@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<MvcMyLibrary.Models.Genre>
 
-Hello from SideBar
+
 <ul>
     @foreach (var genre in @Model)
     {
-        <li>
+        <li class="genre-link">
             @Html.ActionLink(genre.GenreName, "IndexGenre", new { GenreId = genre.GenreId })
         </li>
     }
