@@ -15,6 +15,8 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 .title {font-size: 17px; border-bottom: 1px solid #E2E2E2; padding: 15px 5px; letter-spacing: 0.2px;}
 .author {font-size: 16px;}
 
+#bookInfo { position: fixed; top: 100px; right: 50px; width: 400px; background-color: #fff; padding: 15px; text-align: justify;}
+
 .book-details { height: 600px; border: 1px solid black; display: inline-block;margin-left: -40px;}
 
 #add-book-popup {height: 460px; width: 640px; margin: 0px auto 0px -320px; box-shadow: 0px 0px 10px rgb(174, 174, 174); position: fixed; top: 120px; left: 50%; margin-left: -350px; z-index: 100; color: #6d6d6d; background-color: white; }
