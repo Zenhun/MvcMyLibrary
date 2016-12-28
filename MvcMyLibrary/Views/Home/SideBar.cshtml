@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<MvcMyLibrary.Models.Genre>
 
-
+<input type="button" class="btn btn-block" data-toggle="modal" data-target="#myModal" value="Add Book" />
 <ul>
     @foreach (var genre in @Model)
     {
-        <li class="genre-link">
+        <li class="genre-link" id="@genre.GenreId">
             @Html.ActionLink(genre.GenreName, "IndexGenre", new { GenreId = genre.GenreId })
         </li>
     }
