@@ -31,28 +31,33 @@
     </div>
 </div>*@
 
-<div class="flex-container">
-    @foreach (var book in Model)
-    {
-        <div class="flex-item" id="@book.BookId">
-            <p class="title">@book.Title</p>
-            <p class="author">@book.AuthorName @book.AuthorSurname</p>
-            <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="200" width="140" /></p>
-            <p class="genre">@book.Genre</p>
+<div class="container">
+    <div class="row">
+        <div class="flex-container col-md-6 col-md-offset-2">
+            @foreach (var book in Model)
+            {
+                <div class="flex-item" id="@book.BookId">
+                    <p class="title">@book.Title</p>
+                    <p class="author">@book.AuthorName @book.AuthorSurname</p>
+                    <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="200" width="140" /></p>
+                    <p class="genre">@book.Genre</p>
+                </div>
+            }
         </div>
-    }
+
+        @*Book Info*@
+        <div id="bookInfo" class="col-md-3" style="display: none;">
+            <p id="title"></p>
+            <p id="subtitle"></p>
+            <p id="author"></p>
+            <p id="cover"></p>
+            <p id="genre"></p>
+            <p id="rating"></p>
+            <p id="description"></p>
+        </div>
+    </div>
 </div>
 
-@*Book Info*@
-<div id="bookInfo" style="display: none;">
-    <p id="title"></p>
-    <p id="subtitle"></p>
-    <p id="author"></p>
-    <p id="cover"></p>
-    <p id="genre"></p>
-    <p id="rating"></p>
-    <p id="description"></p>
-</div>
 
 @*--POPUP--*@
 <div id="myModal" class="modal fade" role="dialog">
