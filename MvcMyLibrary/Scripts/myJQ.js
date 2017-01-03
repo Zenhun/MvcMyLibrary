@@ -8,7 +8,6 @@
     var $description = $("#description");
 
     $(".flex-item").click(function () {
-        $("#bookInfo").show();
         $cover.html("");
         $description.text("");
         $subtitle.text("");
@@ -28,5 +27,6 @@
             $rating.text(data.items["0"].volumeInfo.averageRating);
             $description.text(data.items["0"].volumeInfo.description);
         });
+        $("#bookInfo").show();
     });
 });
