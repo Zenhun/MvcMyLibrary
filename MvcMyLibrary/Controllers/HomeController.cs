@@ -33,6 +33,7 @@ namespace MvcMyLibrary.Controllers
                                   orderby g.GenreName
                                   select g).ToList();
 
+            //obrati pažnju da se vraća PartialView
             return PartialView(genres);
         }
 

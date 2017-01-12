@@ -9,13 +9,24 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 #sidebar .genre-link.active a {color: #6d6d6d; font-weight: bold; letter-spacing: 1px;}
 #sidebar .genre-link a:hover, #sidebar .genre-link a:active {background-color: #EFEFEF; text-decoration: none; }
 
-.flex-container { display: flex; flex-wrap: wrap; justify-content: space-around; margin: 0 auto; width: 1000px; max-width: 90%; background-color: #F3F5F5; border-radius: 6px; padding-top: 5px;}
-.flex-item { width: 300px; max-width: 30%; margin: 10px; box-shadow: 0 1px 5px #848282; text-align: center; background-color: #fff; transition: box-shadow 0.2s;}
+.flex-container { display: flex; flex-wrap: wrap; justify-content: space-around; /*margin: 0 auto;*/ width: 1000px; max-width: 90%; background-color: #F3F5F5; border-radius: 6px; padding-top: 5px;}
+.flex-item { width: 300px; max-width: 30%; margin: 10px; box-shadow: 0 1px 5px #848282; text-align: center; background-color: #fff; transition: box-shadow 0.2s; }
 .flex-item:hover {box-shadow: 0 2px 18px #828282; cursor: pointer; border-radius: 3px;}
-.title {font-size: 17px; border-bottom: 1px solid #E2E2E2; padding: 15px 5px; letter-spacing: 0.2px;}
-.author {font-size: 16px;}
+.flex-item:hover .book-icons a {color: #e6e6e6;}
+.flex-item img {box-shadow: 0 0 9px 0px #868484;}
+.flex-item .title {position:relative; font-size: 17px; border-bottom: 1px solid #E2E2E2; padding: 15px 5px; letter-spacing: 0.2px;}
+.flex-item .book-icons a {color: #ffffff;}
+.flex-item .book-icons .book-edit { position: absolute; top: 4px; right: 4px;}
+.flex-item .book-icons .book-edit:hover {color: #00b100;}
+.flex-item .book-icons .book-delete { position: absolute; top: 30px; right: 4px;}
+.flex-item .book-icons .book-delete:hover {color: red;}
+.flex-item .author {font-size: 16px; margin-top: 10px;}
 
-#bookInfo { position: fixed; top: 100px; right: 50px; width: 400px; background-color: #fff; padding: 15px; text-align: justify;}
+/*#bookInfo { position: fixed; top: 100px; right: 50px; width: 400px; background-color: #fff; padding: 15px; text-align: justify; max-height: 85vh; overflow-y: auto;}*/
+#bookInfo { background-color: #fff; padding: 15px; text-align: justify; max-height: 88vh; overflow-y: auto;}
+#bookInfo #title {font-weight: bold; font-size: 16px;}
+#bookInfo #subtitle {font-style: italic; margin-top: -7px; margin-bottom: 15px;}
+#bookInfo img {box-shadow: 0 0 9px 0px #868484;}
 
 .book-details { height: 600px; border: 1px solid black; display: inline-block;margin-left: -40px;}
 

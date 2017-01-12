@@ -3,41 +3,19 @@
     ViewBag.Title = "Library Home";
 }
 
-@*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>*@
-
-<div class="container">
+<div class="container" style="max-width: 1800px; ">
     <div class="row">
-        <div class="flex-container col-md-6 col-md-offset-2">
+        <div class="flex-container col-md-7 col-md-offset-2">
             @foreach (var book in Model)
             {
                 <div class="flex-item" id="@book.BookId">
-                    <p class="title">@book.Title</p>
+                    <div class="title">
+                        @book.Title
+                        <div class="book-icons">
+                            <a href="#" class="book-edit" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="#" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>
+                    </div>
                     <p class="author">@book.AuthorName @book.AuthorSurname</p>
                     <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="200" width="140" /></p>
                     <p class="genre">@book.Genre</p>
@@ -46,7 +24,7 @@
         </div>
 
         @*Book Info*@
-        <div id="bookInfo" class="col-md-3" style="display: none;">
+        <div id="bookInfo" class="col-md-3 pull-right" style="display: none;">
             <p id="title"></p>
             <p id="subtitle"></p>
             <p id="author"></p>
