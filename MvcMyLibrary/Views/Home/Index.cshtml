@@ -9,8 +9,7 @@
             @foreach (var book in Model)
             {
                 <div class="flex-item" id="@book.BookId">
-                    <div class="title">
-                        @book.Title
+                    <div class="title">@book.Title
                         <div class="book-icons">
                             <a href="#" class="book-edit" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a href="#" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
@@ -37,66 +36,7 @@
 </div>
 
 
-@*--POPUP--*@
-<div id="myModal" class="modal fade" role="dialog">
-    <div id="add-book-popup">
-        <div class="top-bar">
-            <button type="button" class="close x-close" data-dismiss="modal">&times;</button>
-            Add Book
-        </div>
-
-        @*--I need the return so the true/false gets passed up to the form's submit event (which looks for this and prevents submission if it gets a false)--*@
-        <form role="form" id="addBookForm" class="form-horizontal" method="post" runat="server">
-            <div class="form-wrap">
-                <div class="form-group">
-                    <label for="inputTitle" class="col-sm-3 control-label">Title:</label>
-                    <div class="col-sm-8">
-                        @*--za HTML5 validaciju dovoljno je dodati atribut 'required="required"'--*@
-                        <input type="text" class="form-control" id="inputTitle" name="title" placeholder="Title" runat="server" style="max-width: 100%;" />
-                    </div>
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="inputName" class="col-sm-3 control-label">Author:</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputName" name="name" placeholder="Name" runat="server" />
-                    </div>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Surname" runat="server" />
-                    </div>
-                </div>
-                <div class="form-group" style="margin-top: 35px;">
-                    <label for="ddGenre" class="col-sm-3 control-label">Select Genre:</label>
-                    <div class="col-sm-8" id="ddGenre">
-                        @*--AppendDataBoundItems="true" nam treba da data bound items dođu poslije praznog reda koji sam ovdje umetnuo u sljedećoj liniji--*@
-                        @*<asp:DropDownList CssClass="btn btn-default dropdown-toggle" runat="server" ID="ddlGenre" AppendDataBoundItems="true" ValidationGroup="ddl" CausesValidation="True">*@
-                            @*--"prazan" item u dropdownu je vidljiv, ali se ne može selektirati (disabled="disabled")--*@
-                            @*<asp:listitem value="-1" text="-- Genre --" selected="True" disabled="disabled"></asp:listitem>*@
-                        @*</asp:DropDownList>*@
-                        @*<asp:RequiredFieldValidator InitialValue="-1" ControlToValidate="ddlGenre" ID="ddlRequired" ValidationGroup="ddl" runat="server" ErrorMessage="* Please select Genre (html)" Font-Size="11px" Font-Bold="True" ForeColor="Red" />*@
-                        <select class="form-control btn-select" id="select-genre" title="Genre">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-top: 30px;">
-                    <label for="inputImage" class="col-sm-3 control-label">Upload Image:</label>
-                    <div class="col-sm-8">
-                        @*<asp:FileUpload ClientIDMode="Static" ID="uploadImage" runat="server" CssClass="btn btn-default btn-block" />*@
-                        @*<button type="button" class="btn btn-default" id="inputImage"><span class="glyphicon glyphicon-folder-open" style="margin-right: 12px;"></span>Browse</button>*@
-                        <label class="btn btn-default" style="width: 100%;">
-                            <input id="image-upload" type="file" style="min-width: 100%;">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="save-buttons">
-                <asp:Button ID="saveBook" Text="Save" runat="server" CssClass="btn btn-success col-sm-3 col-sm-offset-2" CausesValidation="True" OnClick="saveBook_Click" ValidationGroup="ddl" />
-                <button type="button" class="btn btn-danger col-sm-3 col-sm-offset-2" data-dismiss="modal">Cancel</button>
-            </div>
-        </form>
-    </div>
+@*--New Book POPUP--*@
+<div id="newBookModal" class="modal fade" role="dialog">
+    @Html.Partial("_newBook")
 </div>
