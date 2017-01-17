@@ -37,6 +37,12 @@ namespace MvcMyLibrary.Controllers
             return PartialView(genres);
         }
 
+        public ActionResult SaveBook()
+        {
+            //za probu vraćam GenreId = 1
+            return RedirectToAction("IndexGenre", new { GenreId = 1 });
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

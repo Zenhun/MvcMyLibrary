@@ -30,33 +30,43 @@
             //$cover.append("<img src='" + $(this).find("img").attr("src") + "' />");
             $genre.html($(this).children(".genre").text());
 
-            //var bookSrc = "https://www.googleapis.com/books/v1/volumes?q=" + $title.text() + " " + $author.text() + "&maxResults=1";
-            var bookSrc = "https://www.goodreads.com/search.xml?key=V6Iwmnm75zR91VuldBgZgw&q=" + $title.text() + " " + $author.text() + "&callback=?";
-            //var bookSrc = "https://www.goodreads.com/search.xml?key=V6Iwmnm75zR91VuldBgZgw&q=" + $title.text() + " " + $author.text();
 
-            //$.getJSON(bookSrc, function (data) {
-            //    console.log(data);
-            //    //$bookTitle.text(data.items["0"].volumeInfo.title);
-            //    $subtitle.text(data.items["0"].volumeInfo.subtitle);
-            //    $cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
-            //    $rating.text(data.items["0"].volumeInfo.averageRating);
-            //    $description.text(data.items["0"].volumeInfo.description);
-            //    //$("#bookInfo").show();
-            //});
-
-            $.ajax(bookSrc, {
-                dataType: "jsonp",
-                //jsonpCallback: "success",
-                success: function (data) {
-                    console.log(data);
-                    //$bookTitle.text(data.items["0"].volumeInfo.title);
-                    $subtitle.text(data.items["0"].volumeInfo.subtitle);
-                    $cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
-                    $rating.text(data.items["0"].volumeInfo.averageRating);
-                    $description.text(data.items["0"].volumeInfo.description);
-                    $("#bookInfo").fadeIn();
-                }
+            //Google Books API version
+            var bookSrc = "https://www.googleapis.com/books/v1/volumes?q='" + encodeURIComponent($title.text() + "' '" + $author.text()) + "'&maxResults=1";
+            $.getJSON(bookSrc, function (data) {
+                console.log(data);
+                //$bookTitle.text(data.items["0"].volumeInfo.title);
+                $subtitle.text(data.items["0"].volumeInfo.subtitle);
+                $cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
+                $rating.text(data.items["0"].volumeInfo.averageRating);
+                $description.text(data.items["0"].volumeInfo.description);
+                $("#bookInfo").fadeIn();
             });
+
+
+            ////Goodreads API version
+
+            ////Goodreads API returns xml data but forces me to use dataType: "jsonp" because of cross-origin ajax request
+            ////that's why I'm using yahoo's YQL (Yahoo Query Language) that's serves as a json proxy
+
+            ////encodeURIComponents function encodes special characters, including: , / ? : @ & = + $ #
+            //var bookSrc = "https://www.goodreads.com/search.xml?key=V6Iwmnm75zR91VuldBgZgw&q='" + encodeURIComponent($title.text() + "' '" + $author.text() + "'");
+
+            //$.get("http://query.yahooapis.com/v1/public/yql",
+            //    {
+            //        q: "select * from xml where url=\"" + bookSrc + "\"",
+            //        format: "xml"
+            //    },
+            //    function (xml) {
+            //        // contains XML with the following structure:
+            //        // <query>
+            //        //   <results>
+            //        //     <GoodreadsResponse>
+            //        //        ...
+            //        console.log(xml);
+            //        console.log("Title: " +$(xml).find("work").first().find("title").text());
+            //    }
+            //);
 
             selected = $(this).attr("id");
         }
