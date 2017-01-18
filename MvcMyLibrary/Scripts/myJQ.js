@@ -85,4 +85,9 @@
         //find child of #sidebar ul element with id parameter equal to GenreId in query string
         $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
     }
+
+    //prevent vertical scroll bar on New Book modal popup
+    $('#newBookModal').on('show.bs.modal', function () {
+        $('body, .navbar').css("margin-right", "0px");
+    });
 });

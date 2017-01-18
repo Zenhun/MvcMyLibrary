@@ -1,4 +1,6 @@
-﻿<div id="add-book-popup">
+﻿@model MvcMyLibrary.Models.CompleteBook
+
+<div id="add-book-popup">
     <div class="top-bar">
         <button type="button" class="close x-close" data-dismiss="modal">&times;</button>
         Add Book
@@ -13,7 +15,8 @@
                     <label for="inputTitle" class="col-sm-3 control-label">Title:</label>
                     <div class="col-sm-8">
                         @*--za HTML5 validaciju dovoljno je dodati atribut 'required="required"'--*@
-                        <input type="text" class="form-control" id="inputTitle" name="title" placeholder="Title" runat="server" style="max-width: 100%;" />
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder="Title", @style="max-width: 100%" })
+                        @*<input type="text" class="form-control" id="inputTitle" name="title" placeholder="Title" runat="server" style="max-width: 100%;" />*@
                     </div>
                 </div>
                 <br />
