@@ -15,7 +15,7 @@ namespace MvcMyLibrary.Controllers
         public ActionResult Index()
         {
             List<CompleteBook> books = bookList.GetCompleteBooks();
-
+            
             return View(books);
         }
 
@@ -37,10 +37,13 @@ namespace MvcMyLibrary.Controllers
             return PartialView(genres);
         }
 
-        public ActionResult SaveBook()
+        public ActionResult SaveBook(int GenreId, string Title, string AuthorName, string AuthorSurname)
         {
-            //za probu vraćam GenreId = 1
-            return RedirectToAction("IndexGenre", new { GenreId = 1 });
+            //Debug Output just to test user input
+            System.Diagnostics.Debug.WriteLine("Title is " + Title);
+            System.Diagnostics.Debug.WriteLine("Author is " + AuthorName + " " + AuthorSurname);
+            
+            return RedirectToAction("IndexGenre", new { GenreId });
         }
 
         public ActionResult About()

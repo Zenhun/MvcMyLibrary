@@ -107,7 +107,6 @@ C:\Users\Sasa\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\bi
 C:\Users\Sasa\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Sasa\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\obj\Debug\MvcMyLibrary.dll
 C:\Users\Sasa\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\obj\Debug\MvcMyLibrary.pdb
-C:\Users\Sasa\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\obj\Debug\MvcMyLibrary.csprojResolveAssemblyReference.cache
 C:\Users\szezelic\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\bin\MvcMyLibrary.dll.config
 C:\Users\szezelic\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\bin\MvcMyLibrary.dll
 C:\Users\szezelic\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\bin\MvcMyLibrary.pdb
@@ -163,3 +162,4 @@ C:\Users\szezelic\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrar
 C:\Users\szezelic\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\obj\Debug\MvcMyLibrary.csprojResolveAssemblyReference.cache
 C:\Users\szezelic\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\obj\Debug\MvcMyLibrary.dll
 C:\Users\szezelic\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\obj\Debug\MvcMyLibrary.pdb
+C:\Users\Sasa\Documents\Visual Studio 2013\Projects\MvcMyLibrary\MvcMyLibrary\obj\Debug\MvcMyLibrary.csprojResolveAssemblyReference.cache

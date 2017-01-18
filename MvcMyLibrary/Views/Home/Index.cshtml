@@ -38,6 +38,6 @@
 
 @*--New Book POPUP--*@
 <div id="newBookModal" class="modal fade" role="dialog">
-    @*pass new model, otherwise _newBook view will expect Index model which is IEnumerable<mvcmylibrary.models.completebook>*@
-    @Html.Partial("_newBook", new MvcMyLibrary.Models.CompleteBook())
+    @*pass new model, otherwise _newBook view will expect Index model which is IEnumerable<MvcMyLibrary.Models.CompleteBook>*@
+    @Html.Partial("_newBook", new MvcMyLibrary.ViewModels.SaveBookViewModel())
 </div>
