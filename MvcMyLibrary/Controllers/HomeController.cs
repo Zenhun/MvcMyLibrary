@@ -37,11 +37,13 @@ namespace MvcMyLibrary.Controllers
             return PartialView(genres);
         }
 
-        public ActionResult SaveBook(int GenreId, string Title, string AuthorName, string AuthorSurname)
+        public ActionResult SaveBook(string Title, string AuthorName, string AuthorSurname, int GenreId, string ImageUrl)
         {
             //Debug Output just to test user input
             System.Diagnostics.Debug.WriteLine("Title is " + Title);
             System.Diagnostics.Debug.WriteLine("Author is " + AuthorName + " " + AuthorSurname);
+
+            BookActions.BookSave(Title, AuthorName, AuthorSurname, GenreId, ImageUrl);
             
             return RedirectToAction("IndexGenre", new { GenreId });
         }
