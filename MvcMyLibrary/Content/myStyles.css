@@ -10,7 +10,7 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 #sidebar .genre-link a:hover, #sidebar .genre-link a:active {background-color: #EFEFEF; text-decoration: none; }
 
 .flex-container { display: flex; flex-wrap: wrap; justify-content: space-around; /*margin: 0 auto;*/ width: 1000px; max-width: 90%; background-color: #F3F5F5; border-radius: 6px; padding-top: 5px;}
-.flex-item { width: 300px; max-width: 30%; margin: 10px; box-shadow: 0 1px 5px #848282; text-align: center; background-color: #fff; transition: box-shadow 0.2s; }
+.flex-item { width: 300px; max-width: 30%; margin: 10px; box-shadow: 0 1px 5px #848282; text-align: center; background-color: #fff; transition: box-shadow 0.2s; display: none; }
 .flex-item:hover {box-shadow: 0 2px 18px #828282; cursor: pointer; border-radius: 3px;}
 .flex-item:hover .book-icons a {color: #e6e6e6;}
 .flex-item img {box-shadow: 0 0 9px 0px #868484;}
@@ -21,6 +21,9 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 .flex-item .book-icons .book-delete { position: absolute; top: 30px; right: 4px;}
 .flex-item .book-icons .book-delete:hover {color: red;}
 .flex-item .author {font-size: 16px; margin-top: 10px;}
+
+.to-top { position: fixed; right: 50px; bottom: 40px; width: 30px; height: 30px; border: 1px solid #999999; text-align: center; background-color: #F3F5F5; cursor: pointer; display: none;}
+.to-top span.glyphicon {top: 5px; color: #999999;}
 
 /*#bookInfo { position: fixed; top: 100px; right: 50px; width: 400px; background-color: #fff; padding: 15px; text-align: justify; max-height: 85vh; overflow-y: auto;}*/
 #bookInfo { background-color: #fff; padding: 15px; text-align: justify; max-height: 88vh; overflow-y: auto;}

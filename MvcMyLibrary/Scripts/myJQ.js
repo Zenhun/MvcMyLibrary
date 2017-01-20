@@ -8,6 +8,8 @@
     var $description = $("#description");
     var selected = 0;
 
+    $(".flex-container .flex-item").each(function () { $(this).fadeIn(400);});
+
     //function to parse parameters from query string
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -72,10 +74,19 @@
         }
     });
 
+    $(".to-top").click(function () {
+        $('html, body').animate({ scrollTop: 0 }, 500);
+    });
+
     //bookInfo panel stays fixed vertically but moves horizontally if window gets narrower
     // (I didn't use fixed position because bookInfo panel is taken out of the flow and if I shrink the window bookInfo panel covers the main book list)
     $(window).scroll(function () {
-        $("#bookInfo").offset({ top: $(window).scrollTop() + 100});
+        $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
+
+        if($(this).scrollTop() > 100)
+            $(".to-top").slideDown(300);
+        else
+            $(".to-top").slideUp(300);
     });
 
     //select active Genre side link
