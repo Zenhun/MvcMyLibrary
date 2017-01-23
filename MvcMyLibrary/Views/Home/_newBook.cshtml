@@ -6,8 +6,8 @@
         Add Book
     </div>
 
-    @*--I need the return so the true/false gets passed up to the form's submit event (which looks for this and prevents submission if it gets a false)--*@
-    @using (Html.BeginForm("SaveBook", "BookActions", FormMethod.Post))
+    @*use multipart/form-data when your form includes any <input type="file"> elements*@
+    @using (Html.BeginForm("SaveBook", "BookActions", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
             <div class="form-wrap">
                 <div class="form-group">

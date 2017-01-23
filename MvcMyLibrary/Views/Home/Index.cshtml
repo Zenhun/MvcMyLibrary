@@ -12,11 +12,11 @@
                     <div class="title">@book.Title
                         <div class="book-icons">
                             <a href="#" class="book-edit" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="@Url.Action("Delete", "BookActions", new { @id = @book.BookId })" onclick="confirm('Are you sure you?')" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="@Url.Action("Delete", "BookActions", new { @id = @book.BookId })" onclick="if (confirm('Are you sure you?')) return true; return false" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
                         </div>
                     </div>
                     <p class="author">@book.AuthorName @book.AuthorSurname</p>
-                    <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="200" width="140" /></p>
+                    <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="162" width="114" /></p>
                     <p class="genre">@book.Genre</p>
                 </div>
             }

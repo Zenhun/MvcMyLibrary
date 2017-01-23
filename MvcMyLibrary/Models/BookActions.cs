@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -9,11 +10,21 @@ namespace MvcMyLibrary.Models
 {
     public class BookActions
     {
-        public static void BookSave(string title, string authorName, string authorSurname, int genreId, string imageUrl)
+        public static void BookSave(string title, string authorName, string authorSurname, int genreId, HttpPostedFileBase imageUrlFile)
         {
-            if (imageUrl == "")
-                imageUrl = "noimage.jpg";
+            string imageUrl;
 
+            if (imageUrlFile != null && imageUrlFile.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(imageUrlFile.FileName);
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images/"), fileName);
+                imageUrlFile.SaveAs(path);
+                imageUrl = imageUrlFile.FileName;
+            }
+            else
+                imageUrl = "noimage.jpg";
+            
+            
             int authorId;
 
             using (MyLibraryContext dbLibrary = new MyLibraryContext())
@@ -25,6 +36,7 @@ namespace MvcMyLibrary.Models
 
                 SqlParameter paramName = new SqlParameter("@name", authorName);
                 SqlParameter paramSurname = new SqlParameter("@surname", authorSurname);
+                //stored procedure to check if author exist -- if yes, return author id; if no, create author and return author id
                 //it didn't work until I added .FirstOrDefault()
                 var data = dbLibrary.Database.SqlQuery<object>("EXEC @output = checkAuthor @name, @surname", paramOut, paramName, paramSurname).FirstOrDefault();
                 authorId = (int)paramOut.Value;

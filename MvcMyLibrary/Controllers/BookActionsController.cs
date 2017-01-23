@@ -11,15 +11,11 @@ namespace MvcMyLibrary.Controllers
     {
         //MyLibraryContext dbLibrary = new MyLibraryContext();
 
-        public ActionResult SaveBook(string Title, string AuthorName, string AuthorSurname, int GenreId, string ImageUrl)
+        public ActionResult SaveBook(string Title, string AuthorName, string AuthorSurname, int GenreId, HttpPostedFileBase ImageUrl)
         {
-            //Debug Output just to test user input
-            System.Diagnostics.Debug.WriteLine("Title is " + Title);
-            System.Diagnostics.Debug.WriteLine("Author is " + AuthorName + " " + AuthorSurname);
-
             BookActions.BookSave(Title, AuthorName, AuthorSurname, GenreId, ImageUrl);
 
-            return RedirectToAction("IndexGenre", "Home", new { GenreId });
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: BookActions/Details/5

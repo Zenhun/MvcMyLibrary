@@ -6,7 +6,7 @@
     var $genre = $("#genre");
     var $rating = $("#rating");
     var $description = $("#description");
-    var selected = 0;
+    var selectedBook = 0;
 
     $(".flex-container .flex-item").each(function () { $(this).fadeIn(300);});
 
@@ -20,7 +20,7 @@
 
     $(".flex-item").not($(".book-icons")).click(function () {
         //don't change book info if clicked on the same book
-        if (selected !== $(this).attr("id")) {
+        if (selectedBook !== $(this).attr("id")) {
             $("#bookInfo").hide();
             $cover.html("");
             $description.text("");
@@ -71,7 +71,7 @@
             //    }
             //);
 
-            selected = $(this).attr("id");
+            selectedBook = $(this).attr("id");
         }
     });
 
@@ -80,7 +80,7 @@
         $("#bookInfo").fadeOut(200);
         //reset "selected" otherwise I can't reopen book Info of the same book I just closed with "close-bookInfo"
         //because "selected" still has the sam book id
-        selected = 0;
+        selectedBook = 0;
     });
 
     $(".to-top").click(function () {
