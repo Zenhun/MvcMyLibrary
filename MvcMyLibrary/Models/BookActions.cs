@@ -16,21 +16,27 @@ namespace MvcMyLibrary.Models
 
             int authorId;
 
-            MyLibraryContext dbLibrary = new MyLibraryContext();
+            using (MyLibraryContext dbLibrary = new MyLibraryContext())
+            {
+                var paramOut = new SqlParameter();
+                paramOut.ParameterName = "@output";
+                paramOut.SqlDbType = SqlDbType.Int;
+                paramOut.Direction = ParameterDirection.Output;
 
-            var paramOut = new SqlParameter();
-            paramOut.ParameterName = "@output";
-            paramOut.SqlDbType = SqlDbType.Int;
-            paramOut.Direction = ParameterDirection.Output;
+                SqlParameter paramName = new SqlParameter("@name", authorName);
+                SqlParameter paramSurname = new SqlParameter("@surname", authorSurname);
+                //it didn't work until I added .FirstOrDefault()
+                var data = dbLibrary.Database.SqlQuery<object>("EXEC @output = checkAuthor @name, @surname", paramOut, paramName, paramSurname).FirstOrDefault();
+                authorId = (int)paramOut.Value;
 
-            //var outParam = new SqlParameter("@ReturnCode", SqlDbType.Int);
-            //outParam.Direction = ParameterDirection.Output;
-
-            SqlParameter paramName = new SqlParameter("@name", authorName);
-            SqlParameter paramSurname = new SqlParameter("@surname", authorSurname);
-            var data = dbLibrary.Database.SqlQuery<object>("checkAuthor @name, @surname, @output OUTPUT", paramName, paramSurname, paramOut);
-            authorId = (int)paramOut.Value;
-            System.Diagnostics.Debug.WriteLine("Returned Author Id: " + authorId);
+                var newBook = new Book();
+                newBook.Title = title;
+                newBook.AuthorId = authorId;
+                newBook.GenreId = genreId;
+                newBook.ImageUrl = imageUrl;
+                dbLibrary.Books.Add(newBook);
+                dbLibrary.SaveChanges();
+            }            
         }
     }
 }
