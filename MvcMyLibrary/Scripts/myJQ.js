@@ -8,7 +8,7 @@
     var $description = $("#description");
     var selected = 0;
 
-    $(".flex-container .flex-item").each(function () { $(this).fadeIn(400);});
+    $(".flex-container .flex-item").each(function () { $(this).fadeIn(300);});
 
     //function to parse parameters from query string
     function getUrlParameter(name) {
@@ -42,7 +42,8 @@
                 $cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
                 $rating.text(data.items["0"].volumeInfo.averageRating);
                 $description.text(data.items["0"].volumeInfo.description);
-                $("#bookInfo").fadeIn();
+                $("#bookInfo").fadeIn(300);
+                $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
             });
 
 
@@ -74,6 +75,14 @@
         }
     });
 
+    //close bookInfo panel
+    $("#close-bookInfo").click(function () {
+        $("#bookInfo").fadeOut(200);
+        //reset "selected" otherwise I can't reopen book Info of the same book I just closed with "close-bookInfo"
+        //because "selected" still has the sam book id
+        selected = 0;
+    });
+
     $(".to-top").click(function () {
         $('html, body').animate({ scrollTop: 0 }, 500);
     });
@@ -83,6 +92,7 @@
     $(window).scroll(function () {
         $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
 
+        //show-hide scroll-to-top button
         if($(this).scrollTop() > 100)
             $(".to-top").slideDown(300);
         else
@@ -97,8 +107,8 @@
         $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
     }
 
-    //prevent vertical scroll bar on New Book modal popup
-    $('#newBookModal').on('show.bs.modal', function () {
-        $('body, .navbar').css("margin-right", "0px");
-    });
+    ////prevent vertical scroll bar on New Book modal popup
+    //$('#newBookModal').on('show.bs.modal', function () {
+    //    $('body, .navbar').css("margin-right", "0px");
+    //});
 });

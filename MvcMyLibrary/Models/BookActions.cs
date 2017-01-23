@@ -18,18 +18,18 @@ namespace MvcMyLibrary.Models
 
             MyLibraryContext dbLibrary = new MyLibraryContext();
 
-            var returnCode = new SqlParameter();
-            returnCode.ParameterName = "@return_value";
-            returnCode.SqlDbType = SqlDbType.Int;
-            returnCode.Direction = ParameterDirection.Output;
+            var paramOut = new SqlParameter();
+            paramOut.ParameterName = "@output";
+            paramOut.SqlDbType = SqlDbType.Int;
+            paramOut.Direction = ParameterDirection.Output;
 
             //var outParam = new SqlParameter("@ReturnCode", SqlDbType.Int);
             //outParam.Direction = ParameterDirection.Output;
 
             SqlParameter paramName = new SqlParameter("@name", authorName);
             SqlParameter paramSurname = new SqlParameter("@surname", authorSurname);
-            var data = dbLibrary.Database.SqlQuery<object>("exec @return_value = checkAuthor @name, @surname", returnCode, paramName, paramSurname);
-            authorId = (int)returnCode.Value;
+            var data = dbLibrary.Database.SqlQuery<object>("checkAuthor @name, @surname, @output OUTPUT", paramName, paramSurname, paramOut);
+            authorId = (int)paramOut.Value;
             System.Diagnostics.Debug.WriteLine("Returned Author Id: " + authorId);
         }
     }

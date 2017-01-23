@@ -12,7 +12,7 @@
                     <div class="title">@book.Title
                         <div class="book-icons">
                             <a href="#" class="book-edit" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="#" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="@Url.Action("Delete", "BookActions", new { @id = @book.BookId })" onclick="confirm('Are you sure you?')" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
                         </div>
                     </div>
                     <p class="author">@book.AuthorName @book.AuthorSurname</p>
@@ -24,6 +24,7 @@
 
         @*Book Info*@
         <div id="bookInfo" class="col-md-3 pull-right" style="display: none;">
+            <div id="close-bookInfo"><span class="glyphicon glyphicon-remove"></span></div>
             <p id="title"></p>
             <p id="subtitle"></p>
             <p id="author"></p>
