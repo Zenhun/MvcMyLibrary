@@ -26,12 +26,13 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 .to-top span.glyphicon {top: 5px; color: #999999;}
 
 /*#bookInfo { position: fixed; top: 100px; right: 50px; width: 400px; background-color: #fff; padding: 15px; text-align: justify; max-height: 85vh; overflow-y: auto;}*/
-#bookInfo { background-color: #fff; padding: 15px; text-align: justify; max-height: 88vh; overflow-y: auto;}
+#bookInfo { background-color: #fff; padding: 15px; text-align: justify; }
 #bookInfo #title {font-weight: bold; font-size: 16px;}
 #bookInfo #subtitle {font-style: italic; margin-top: -7px; margin-bottom: 15px;}
 #bookInfo img {box-shadow: 0 0 9px 0px #868484;}
 #bookInfo #close-bookInfo { position: absolute; top: 5px; right: 5px; color: #999999; cursor: pointer;}
 #bookInfo #close-bookInfo:hover {color: #484848;}
+#bookInfo #description { max-height: 50vh; overflow-y: auto; padding-right: 7px; margin-right: -16px; }
 
 #newBookModal { overflow-y: hidden;}
 #add-book-popup {height: 460px; width: 640px; margin: 0px auto 0px -320px; box-shadow: 0px 0px 10px rgb(174, 174, 174); position: fixed; top: 120px; left: 50%; margin-left: -350px; z-index: 100; color: #6d6d6d; background-color: white; }

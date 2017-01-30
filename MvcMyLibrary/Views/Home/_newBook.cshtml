@@ -16,6 +16,7 @@
                         @*--za HTML5 validaciju dovoljno je dodati atribut 'required="required"'--*@
                         @*I need to add Name="Title", otherwise textbox name is "Book.Title" because of the model, and like that it can't be passed to SaveBook Controller*@
                         @Html.TextBoxFor(m => m.Book.Title, new { Name="Title", @class = "form-control", @placeholder = "Title", @style = "max-width: 100%" })
+                        @Html.ValidationMessageFor(m => m.Book.Title, "Enter Book Title (html)", new { Name="Title"})
                     </div>
                 </div>
                 <br />
@@ -35,6 +36,7 @@
                         @*new SelectList(@Model.GenreList, "GenreId", "GenreName")  -- GenreId je property iz Genre modela koji prestavlja Value od SelectListItema,
                                                                                     -- GenreName je property iz Genre modela koji prestavlja Text od SelectListItema*@
                         @Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select", @title = "Genre" })
+                        @Html.ValidationMessageFor(model => model.GenreList, "Select Genre (html)")
                     </div>
                 </div>
                 <div class="form-group" style="margin-top: 30px;">
@@ -48,7 +50,7 @@
                 </div>
             </div>
             <div class="save-buttons">
-                <button type="submit" class="btn btn-success col-sm-3 col-sm-offset-2" onclick="alert('This is saved')">Save</button>
+                <button type="submit" class="btn btn-success col-sm-3 col-sm-offset-2" @*onclick="alert('This is saved')"*@>Save</button>
                 <button type="button" class="btn btn-danger col-sm-3 col-sm-offset-2" data-dismiss="modal">Cancel</button>
             </div>
     } @*</form>*@

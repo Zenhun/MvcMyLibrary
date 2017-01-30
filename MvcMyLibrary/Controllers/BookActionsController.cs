@@ -10,10 +10,13 @@ namespace MvcMyLibrary.Controllers
     public class BookActionsController : Controller
     {
         //MyLibraryContext dbLibrary = new MyLibraryContext();
-
+        [HttpPost]
         public ActionResult SaveBook(string Title, string AuthorName, string AuthorSurname, int GenreId, HttpPostedFileBase ImageUrl)
         {
-            BookActions.BookSave(Title, AuthorName, AuthorSurname, GenreId, ImageUrl);
+            if (ModelState.IsValid)
+            {
+                BookActions.BookSave(Title, AuthorName, AuthorSurname, GenreId, ImageUrl);
+            }
 
             return RedirectToAction("Index", "Home");
         }

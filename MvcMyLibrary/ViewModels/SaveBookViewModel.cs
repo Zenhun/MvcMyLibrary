@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using MvcMyLibrary.Models;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace MvcMyLibrary.ViewModels
 {
     public class SaveBookViewModel
     {
+        [Required]
         public CompleteBook Book { get; set; }
         IEnumerable<Genre> genreList;
-
+        [Required]
         public IEnumerable<Genre> GenreList
         {
             get 

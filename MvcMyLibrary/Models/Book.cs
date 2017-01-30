@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace MvcMyLibrary.Models
     public class Book
     {
         public int BookId { get; set; }
+        [Required(ErrorMessage="Enter Book Title")]
         public string Title { get; set; }
         //Foreign Key
         public int AuthorId { get; set; }

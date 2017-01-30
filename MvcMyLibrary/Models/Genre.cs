@@ -11,6 +11,7 @@ namespace MvcMyLibrary.Models
     [Table("dbo.Genre")]
     public class Genre
     {
+        [Required]
         public int GenreId { get; set; }
         public string GenreName { get; set; }
         List<Book> Books { get; set; }
