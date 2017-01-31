@@ -44,6 +44,8 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 #add-book-popup .form-group {padding-top: 25px;}
 #add-book-popup .save-buttons {margin-top: 45px;}
 
+.error-msg {color: red; font-size: 11px;}
+
 @media (max-width: 767px) { 
     body { margin-top: 80px!important;}
     /*.flex-container { width: 90%;}*/

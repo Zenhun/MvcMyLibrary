@@ -1,4 +1,5 @@
-﻿@model MvcMyLibrary.ViewModels.SaveBookViewModel
+﻿@*@model MvcMyLibrary.ViewModels.SaveBookViewModel*@
+@model MvcMyLibrary.Models.CompleteBook
 
 <div id="add-book-popup">
     <div class="top-bar">
@@ -11,23 +12,26 @@
     {
             <div class="form-wrap">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Book.Title, "Title:", new { @class = "col-sm-3 control-label"})
+                    @*@Html.LabelFor(m => m.Book.Title, "Title:", new { @class = "col-sm-3 control-label"})*@
+                    @Html.LabelFor(m => m.Title, "Title:", new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-8">
                         @*--za HTML5 validaciju dovoljno je dodati atribut 'required="required"'--*@
                         @*I need to add Name="Title", otherwise textbox name is "Book.Title" because of the model, and like that it can't be passed to SaveBook Controller*@
-                        @Html.TextBoxFor(m => m.Book.Title, new { Name="Title", @class = "form-control", @placeholder = "Title", @style = "max-width: 100%" })
-                        @Html.ValidationMessageFor(m => m.Book.Title, "Enter Book Title (html)", new { Name="Title"})
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Title", @style = "max-width: 100%" })
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class="error-msg"})
                     </div>
                 </div>
                 <br />
                 <div class="form-group">
                     @*<label for="inputName" class="col-sm-3 control-label">Author:</label>*@
-                    @Html.LabelFor(m => m.Book.AuthorName, "Author:", new { @class = "col-sm-3 control-label" })
+                    @Html.LabelFor(m => m.AuthorName, "Author:", new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(m => m.Book.AuthorName, new { Name = "AuthorName", @class = "form-control", @placeholder = "Name" })
+                        @Html.TextBoxFor(m => m.AuthorName, new { @class = "form-control", @placeholder = "Name" })
+                        @Html.ValidationMessageFor(m => m.AuthorName, "", new { @class = "error-msg" })
                     </div>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(m => m.Book.AuthorSurname, new { Name = "AuthorSurname", @class = "form-control", @placeholder = "Surname" })
+                        @Html.TextBoxFor(m => m.AuthorSurname, new { @class = "form-control", @placeholder = "Surname" })
+                        @Html.ValidationMessageFor(m => m.AuthorSurname, "", new { @class = "error-msg" })
                     </div>
                 </div>
                 <div class="form-group" style="margin-top: 35px;">
@@ -35,8 +39,11 @@
                     <div class="col-sm-8" id="ddGenre">                        
                         @*new SelectList(@Model.GenreList, "GenreId", "GenreName")  -- GenreId je property iz Genre modela koji prestavlja Value od SelectListItema,
                                                                                     -- GenreName je property iz Genre modela koji prestavlja Text od SelectListItema*@
-                        @Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select", @title = "Genre" })
-                        @Html.ValidationMessageFor(model => model.GenreList, "Select Genre (html)")
+                        @*@Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select", @title = "Genre" })*@
+                        @*@Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select" })
+                        @Html.ValidationMessage("GenreId")*@
+                        @Html.DropDownListFor(m => m.GenreId, new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select" })
+                        @Html.ValidationMessageFor(m => m.GenreId, "", new { @class= "error-msg"})
                     </div>
                 </div>
                 <div class="form-group" style="margin-top: 30px;">

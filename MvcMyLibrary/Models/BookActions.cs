@@ -24,7 +24,6 @@ namespace MvcMyLibrary.Models
             else
                 imageUrl = "noimage.jpg";
             
-            
             int authorId;
 
             using (MyLibraryContext dbLibrary = new MyLibraryContext())

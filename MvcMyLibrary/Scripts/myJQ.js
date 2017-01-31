@@ -111,4 +111,10 @@
     //$('#newBookModal').on('show.bs.modal', function () {
     //    $('body, .navbar').css("margin-right", "0px");
     //});
+
+    //empty form fields on modal close (not working)
+    $("#newBookModal").on('hidden.bs.modal', function () {
+        //$(this).find('form')[0].reset();
+        $(this).find("input[type=text]").val();
+    })
 });

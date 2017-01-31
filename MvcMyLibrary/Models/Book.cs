@@ -11,7 +11,6 @@ namespace MvcMyLibrary.Models
     public class Book
     {
         public int BookId { get; set; }
-        [Required(ErrorMessage="Enter Book Title")]
         public string Title { get; set; }
         //Foreign Key
         public int AuthorId { get; set; }
