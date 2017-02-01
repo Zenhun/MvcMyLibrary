@@ -48,7 +48,7 @@ namespace MvcMyLibrary.Models
             var books2 = (from b in dbLibrary.Books
                           join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
                           join g in dbLibrary.Genres on b.GenreId equals g.GenreId
-                          select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreName, b.ImageUrl }).ToList();
+                          select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
 
             if (GenreId != -1)
             {
@@ -56,7 +56,7 @@ namespace MvcMyLibrary.Models
                           join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
                           join g in dbLibrary.Genres on b.GenreId equals g.GenreId
                           where g.GenreId == GenreId
-                          select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreName, b.ImageUrl }).ToList();
+                          select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
             }
 
 
@@ -70,6 +70,7 @@ namespace MvcMyLibrary.Models
                 modelBook.Title = book.Title;
                 modelBook.AuthorName = book.Name;
                 modelBook.AuthorSurname = book.Surname;
+                modelBook.GenreId = book.GenreId;
                 modelBook.Genre = book.GenreName;
                 modelBook.CoverImageUrl = book.ImageUrl;
 

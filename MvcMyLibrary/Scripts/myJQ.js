@@ -8,6 +8,7 @@
     var $description = $("#description");
     var selectedBook = 0;
 
+    //fade in book list
     $(".flex-container .flex-item").each(function () { $(this).fadeIn(300);});
 
     //function to parse parameters from query string
@@ -18,7 +19,7 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    $(".flex-item").not($(".book-icons")).click(function () {
+    $(".flex-item").not($(".book-edit, .book-delete")).click(function () {
         //don't change book info if clicked on the same book
         if (selectedBook !== $(this).attr("id")) {
             $("#bookInfo").hide();
@@ -27,13 +28,14 @@
             $subtitle.text("");
             $rating.text("");
 
-            $title.text($(this).children(".title").text());
+            $title.text($(this).find(".title span").text());
             $author.html($(this).children(".author").text());
             //$cover.append("<img src='" + $(this).find("img").attr("src") + "' />");
             $genre.html($(this).children(".genre").text());
 
 
             //Google Books API version
+            ////encodeURIComponents function encodes special characters, including: , / ? : @ & = + $ #
             var bookSrc = "https://www.googleapis.com/books/v1/volumes?q='" + encodeURIComponent($title.text() + "' '" + $author.text()) + "'&maxResults=1";
             $.getJSON(bookSrc, function (data) {
                 console.log(data);
@@ -75,6 +77,16 @@
         }
     });
 
+    $("a.book-edit").click(function () {
+        var $book = $(this).closest(".flex-item");
+        var $modal = $("#newBookModal");
+        $modal.find("input#Title").val($book.find(".title span").text());
+        $modal.find("input#AuthorName").val($book.find("#hidAuthorName").val());
+        $modal.find("input#AuthorSurname").val($book.find("#hidAuthorSurname").val());
+        $modal.find("select#GenreId").val($book.find("#hidGenreId").val());
+        //$modal.find("input#image-upload").val($book.find("img").attr("src"));
+    });
+
     //close bookInfo panel
     $("#close-bookInfo").click(function () {
         $("#bookInfo").fadeOut(200);
@@ -112,9 +124,18 @@
     //    $('body, .navbar').css("margin-right", "0px");
     //});
 
-    //empty form fields on modal close (not working)
+    //empty form fields on modal close
     $("#newBookModal").on('hidden.bs.modal', function () {
-        //$(this).find('form')[0].reset();
-        $(this).find("input[type=text]").val();
+        $(this).find("input.form-control, select, input[type=file]").val("");
+        //remove validation messages
+        $(this).find("[data-valmsg-replace]")
+            .removeClass("field-validation-error")
+            .addClass("field-validation-valid")
+            .empty();
     })
+
+    $("[data-target='#newBookModal']").click(function () {
+        var passedID = $(this).data('id');
+        $("#hiddenId").val(passedID);
+    });
 });

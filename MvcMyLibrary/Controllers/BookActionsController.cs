@@ -11,13 +11,24 @@ namespace MvcMyLibrary.Controllers
     {
         //MyLibraryContext dbLibrary = new MyLibraryContext();
         [HttpPost]
-        public ActionResult SaveBook(string Title, string AuthorName, string AuthorSurname, int GenreId, HttpPostedFileBase ImageUrl)
+        public ActionResult SaveBook(int hiddenId, string Title, string AuthorName, string AuthorSurname, int GenreId, HttpPostedFileBase ImageUrl)
         {
             if (ModelState.IsValid)
             {
-                BookActions.BookSave(Title, AuthorName, AuthorSurname, GenreId, ImageUrl);
+                //New Book modal has data-id=0
+                //Update Book modal has data-id=BookId
+                if (hiddenId == 0)
+                {
+                    BookActions.BookSave(Title, AuthorName, AuthorSurname, GenreId, ImageUrl);
+                }
+                else
+                {
+                    int BookId = hiddenId;
+                    BookActions.BookUpdate(BookId, Title, AuthorName, AuthorSurname, GenreId, ImageUrl);
+                }
+                
             }
-
+            
             return RedirectToAction("Index", "Home");
         }
 
