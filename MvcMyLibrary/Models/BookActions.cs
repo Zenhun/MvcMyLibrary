@@ -31,8 +31,6 @@ namespace MvcMyLibrary.Models
 
         public static void BookUpdate(int bookId, string title, string authorName, string authorSurname, int genreId, HttpPostedFileBase imageUrlFile)
         {
-            string imageUrl = GetImageUrl(imageUrlFile);
-
             using (MyLibraryContext dbLibrary = new MyLibraryContext())
             {
                 int authorId = GetAuthorId(authorName, authorSurname);
@@ -47,7 +45,9 @@ namespace MvcMyLibrary.Models
                 bookToUpdate.Title = title;
                 bookToUpdate.AuthorId = authorId;
                 bookToUpdate.GenreId = genreId;
-                bookToUpdate.ImageUrl = imageUrl;
+                //if imageUrlFile == null we are keeping current cover, so don't include in update
+                if(imageUrlFile != null)
+                    bookToUpdate.ImageUrl = GetImageUrl(imageUrlFile);
                 dbLibrary.SaveChanges();
             }
         }
@@ -90,5 +90,7 @@ namespace MvcMyLibrary.Models
 
             return authorId;
         }
+
+
     }
 }

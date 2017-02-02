@@ -19,7 +19,8 @@
                     </div>
                     <p class="author">@book.AuthorName @book.AuthorSurname</p>
                     <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="162" width="114" /></p>
-                    <p class="genre">@book.Genre</p>
+                    <p class="genre"><a href="@Url.Action("IndexGenre", "Home", new {@GenreId = @book.GenreId})">@book.Genre</a></p>
+                        
                     @Html.Hidden("hidAuthorName", @book.AuthorName)
                     @Html.Hidden("hidAuthorSurname", @book.AuthorSurname)
                     @Html.Hidden("hidGenreId", @book.GenreId)

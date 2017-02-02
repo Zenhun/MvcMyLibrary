@@ -35,14 +35,16 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 #bookInfo #description { max-height: 50vh; overflow-y: auto; padding-right: 7px; margin-right: -16px; }
 
 #newBookModal { overflow-y: hidden;}
-#add-book-popup {height: 460px; width: 640px; margin: 0px auto 0px -320px; box-shadow: 0px 0px 10px rgb(174, 174, 174); position: fixed; top: 120px; left: 50%; margin-left: -350px; z-index: 100; color: #6d6d6d; background-color: white; }
+#add-book-popup { width: 640px; margin: 0px auto 0px -320px; box-shadow: 0px 0px 10px rgb(174, 174, 174); position: fixed; top: 120px; left: 50%; margin-left: -350px; z-index: 100; color: #6d6d6d; background-color: white; }
 #add-book-popup select {max-width: 100%;}
 #add-book-popup .top-bar {width: 100%; height: 45px; line-height: 45px; text-align: center; font-size: 17px; font-weight: bold; background-color: #EFEFEF; align-content: center; box-shadow: 0 1px 6px 0px #bbb9b9;}
 #add-book-popup .x-close {position: relative;top: 11px;right: 8px;}
 #add-book-popup .form-wrap {padding: 35px; }
 #add-book-popup .form-group label {text-align: right; padding-top: 6px; }
 #add-book-popup .form-group {padding-top: 25px;}
-#add-book-popup .save-buttons {margin-top: 45px;}
+#add-book-popup #update-cover { margin-top: 30px;}
+#add-book-popup #update-cover img { margin-left: 17px; box-shadow: 0 0 9px 0px #868484;}
+#add-book-popup .save-buttons {margin-top: 20px; margin-bottom: 85px;}
 
 .error-msg {color: red; font-size: 11px;}
 

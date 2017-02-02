@@ -3,11 +3,11 @@
 <div id="add-book-popup">
     <div class="top-bar">
         <button type="button" class="close x-close" data-dismiss="modal">&times;</button>
-        Add Book
+        <span>Add Book</span>
     </div>
 
     @*use multipart/form-data when your form includes any <input type="file"> elements*@
-    @using (Html.BeginForm("SaveBook", "BookActions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("SaveUpdateBook", "BookActions", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.Hidden("hiddenId")
 
@@ -33,8 +33,8 @@
                     @Html.ValidationMessageFor(m => m.AuthorSurname, "", new { @class = "error-msg" })
                 </div>
             </div>
-            <div class="form-group" style="margin-top: 35px;">
-                <label for="ddGenre" class="col-sm-3 control-label">Select Genre:</label>
+            <div class="form-group" style="margin-top: 35px; margin-bottom: 35px;">
+                <label for="GenreId" class="col-sm-3 control-label">Select Genre:</label>
                 <div class="col-sm-8" id="ddGenre">                        
                     @*new SelectList(@Model.GenreList, "GenreId", "GenreName")  -- GenreId je property iz Genre modela koji prestavlja Value od SelectListItema,
                                                                                 -- GenreName je property iz Genre modela koji prestavlja Text od SelectListItema*@
@@ -45,8 +45,13 @@
                     @Html.ValidationMessageFor(m => m.GenreId, "", new { @class = "error-msg" })
                 </div>
             </div>
-            <div class="form-group" style="margin-top: 30px;">
-                <label for="inputImage" class="col-sm-3 control-label">Upload Image:</label>
+            <div id="update-cover" class="form-group" style="display: none;">
+                <label class="col-sm-3 control-label">Current Cover:</label>
+                <img height="162" width="114" src="~/Content/Images/noimage.jpg" />
+                <input id="change-cover" type="button" class="btn btn-default btn-xs" value="Change Cover" style="margin-left: 17px;" />
+            </div>
+            <div id="upload-box" class="form-group">
+                <label for="image-upload" class="col-sm-3 control-label">Upload Image:</label>
                 <div class="col-sm-8">
                     <label class="btn btn-default" style="width: 100%;">
                         <input id="image-upload" name="ImageUrl" type="file" style="min-width: 100%;">

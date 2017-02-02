@@ -11,7 +11,7 @@ namespace MvcMyLibrary.Controllers
     {
         //MyLibraryContext dbLibrary = new MyLibraryContext();
         [HttpPost]
-        public ActionResult SaveBook(int hiddenId, string Title, string AuthorName, string AuthorSurname, int GenreId, HttpPostedFileBase ImageUrl)
+        public ActionResult SaveUpdateBook(int hiddenId, string Title, string AuthorName, string AuthorSurname, int GenreId, HttpPostedFileBase ImageUrl)
         {
             if (ModelState.IsValid)
             {

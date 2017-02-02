@@ -19,6 +19,14 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
+    //select active Genre side link
+    $(".genre-link.active").removeClass("active");
+    var activeGenreId = getUrlParameter("GenreId");
+    if (activeGenreId > 0) {
+        //find child of #sidebar ul element with id parameter equal to GenreId in query string
+        $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
+    }
+
     $(".flex-item").not($(".book-edit, .book-delete")).click(function () {
         //don't change book info if clicked on the same book
         if (selectedBook !== $(this).attr("id")) {
@@ -31,7 +39,7 @@
             $title.text($(this).find(".title span").text());
             $author.html($(this).children(".author").text());
             //$cover.append("<img src='" + $(this).find("img").attr("src") + "' />");
-            $genre.html($(this).children(".genre").text());
+            $genre.html("<b>Genre: </b>" + $(this).children(".genre").text());
 
 
             //Google Books API version
@@ -42,8 +50,8 @@
                 //$bookTitle.text(data.items["0"].volumeInfo.title);
                 $subtitle.text(data.items["0"].volumeInfo.subtitle);
                 $cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
-                $rating.text(data.items["0"].volumeInfo.averageRating);
-                $description.text(data.items["0"].volumeInfo.description);
+                $rating.html("<b>Rating: </b>" + data.items["0"].volumeInfo.averageRating);
+                $description.html("<b>Description: </b>" + data.items["0"].volumeInfo.description);
                 $("#bookInfo").fadeIn(300);
                 $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
             });
@@ -80,11 +88,21 @@
     $("a.book-edit").click(function () {
         var $book = $(this).closest(".flex-item");
         var $modal = $("#newBookModal");
+        var $src = $book.find("img").attr("src");
         $modal.find("input#Title").val($book.find(".title span").text());
         $modal.find("input#AuthorName").val($book.find("#hidAuthorName").val());
         $modal.find("input#AuthorSurname").val($book.find("#hidAuthorSurname").val());
         $modal.find("select#GenreId").val($book.find("#hidGenreId").val());
+        $modal.find("#update-cover img").attr("src", $src);
         //$modal.find("input#image-upload").val($book.find("img").attr("src"));
+
+        $("#add-book-popup .top-bar span").text("Edit book");
+        $("#update-cover").show();
+        $("#upload-box").hide();
+    });
+
+    $("#change-cover").click(function () {
+        $("#upload-box").slideToggle();
     });
 
     //close bookInfo panel
@@ -111,27 +129,26 @@
             $(".to-top").slideUp(300);
     });
 
-    //select active Genre side link
-    $(".genre-link.active").removeClass("active");
-    var activeGenreId = getUrlParameter("GenreId");
-    if (activeGenreId > 0) {
-        //find child of #sidebar ul element with id parameter equal to GenreId in query string
-        $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
-    }
 
     ////prevent vertical scroll bar on New Book modal popup
     //$('#newBookModal').on('show.bs.modal', function () {
     //    $('body, .navbar').css("margin-right", "0px");
     //});
 
-    //empty form fields on modal close
+    
     $("#newBookModal").on('hidden.bs.modal', function () {
+        //empty form fields on modal close
         $(this).find("input.form-control, select, input[type=file]").val("");
         //remove validation messages
         $(this).find("[data-valmsg-replace]")
             .removeClass("field-validation-error")
             .addClass("field-validation-valid")
             .empty();
+        $(this).find("img").attr("src", "/Content/Images/noimage.jpg");
+
+        $("#add-book-popup .top-bar span").text("Add book");
+        $("#update-cover").hide();
+        $("#upload-box").show();
     })
 
     $("[data-target='#newBookModal']").click(function () {
