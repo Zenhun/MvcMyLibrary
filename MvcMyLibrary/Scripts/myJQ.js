@@ -103,6 +103,11 @@
 
     $("#change-cover").click(function () {
         $("#upload-box").slideToggle();
+
+    });
+
+    $("#btn-add-genre").click(function () {
+        $("#new-genre-box").fadeIn().find("#Genre").focus();
     });
 
     //close bookInfo panel
@@ -149,6 +154,7 @@
         $("#add-book-popup .top-bar span").text("Add book");
         $("#update-cover").hide();
         $("#upload-box").show();
+        $("#new-genre-box").hide();
     })
 
     $("[data-target='#newBookModal']").click(function () {

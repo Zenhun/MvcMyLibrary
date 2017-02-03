@@ -17,6 +17,7 @@ namespace MvcMyLibrary.Models
         public string AuthorSurname { get; set; }
         [Required(ErrorMessage = "Please select genre")]
         public int GenreId { get; set; }
+        [Required(ErrorMessage = "Please enter genre")]
         public string Genre { get; set; }
         public string CoverImageUrl { get; set; }
         IEnumerable<Genre> genreList;
@@ -48,6 +49,7 @@ namespace MvcMyLibrary.Models
             var books2 = (from b in dbLibrary.Books
                           join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
                           join g in dbLibrary.Genres on b.GenreId equals g.GenreId
+                          orderby b.Title
                           select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
 
             if (GenreId != -1)
@@ -56,6 +58,7 @@ namespace MvcMyLibrary.Models
                           join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
                           join g in dbLibrary.Genres on b.GenreId equals g.GenreId
                           where g.GenreId == GenreId
+                          orderby b.Title
                           select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
             }
 

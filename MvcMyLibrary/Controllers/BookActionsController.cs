@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcMyLibrary.Models;
+using System.Data.SqlClient;
 
 namespace MvcMyLibrary.Controllers
 {
@@ -29,6 +30,15 @@ namespace MvcMyLibrary.Controllers
                 
             }
             
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult CreateGenre(string genre)
+        {
+            BookActions.GenreSave(genre);
+
+            //update what the method returns!!!
             return RedirectToAction("Index", "Home");
         }
 
@@ -60,25 +70,9 @@ namespace MvcMyLibrary.Controllers
             }
         }
 
-        //// GET: BookActions/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    //using (var library = new MyLibraryContext())
-        //    //{
-        //    //    var book = from b in library.Books
-        //    //               where b.BookId == id
-        //    //               select b;
-
-        //    //    library.Books.Remove(book.First());
-        //    //    library.SaveChanges();
-        //    //}
-
-        //    return RedirectToAction("Index", "Home");
-        //}
-
         // POST: BookActions/Delete/5
         //[HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {

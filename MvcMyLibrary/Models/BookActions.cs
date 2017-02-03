@@ -52,6 +52,24 @@ namespace MvcMyLibrary.Models
             }
         }
 
+        public static void GenreSave(string genre)
+        {
+            using (MyLibraryContext dbLibrary = new MyLibraryContext())
+            {
+                SqlParameter paramGenre = new SqlParameter("@genre", genre);
+                int genreCheck = dbLibrary.Database.ExecuteSqlCommand("SELECT * FROM Genre WHERE GenreName = @genre", paramGenre);
+
+                if (genreCheck != 1)
+                {
+                    var newGenre = new Genre();
+                    newGenre.GenreName = genre;
+                    dbLibrary.Genres.Add(newGenre);
+                    dbLibrary.SaveChanges();
+    
+                }
+            }
+        }
+
         public static string GetImageUrl(HttpPostedFileBase imageUrlFile)
         {
             string imageUrl;

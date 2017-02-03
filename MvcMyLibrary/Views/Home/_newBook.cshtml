@@ -33,16 +33,28 @@
                     @Html.ValidationMessageFor(m => m.AuthorSurname, "", new { @class = "error-msg" })
                 </div>
             </div>
-            <div class="form-group" style="margin-top: 35px; margin-bottom: 35px;">
+            <div class="form-group" style="margin-top: 35px; margin-bottom: 35px; position: relative">
                 <label for="GenreId" class="col-sm-3 control-label">Select Genre:</label>
-                <div class="col-sm-8" id="ddGenre">                        
+                <div class="col-sm-8" id="ddGenre">
                     @*new SelectList(@Model.GenreList, "GenreId", "GenreName")  -- GenreId je property iz Genre modela koji prestavlja Value od SelectListItema,
-                                                                                -- GenreName je property iz Genre modela koji prestavlja Text od SelectListItema*@
+            -- GenreName je property iz Genre modela koji prestavlja Text od SelectListItema*@
                     @*@Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select", @title = "Genre" })*@
                     @*@Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select" })
-                    @Html.ValidationMessage("GenreId")*@
-                    @Html.DropDownListFor(m => m.GenreId, new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select" })
+            @Html.ValidationMessage("GenreId")*@
+                    <div class="container">
+                        <div class="row">
+                            @Html.DropDownListFor(m => m.GenreId, new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "ddl-genre form-control btn-select col-sm-9" })
+                            <input type="button" id="btn-add-genre" class="btn btn-default btn col-sm-2" title="Add Genre" value="Add" />
+                        </div>
+                    </div>
                     @Html.ValidationMessageFor(m => m.GenreId, "", new { @class = "error-msg" })
+                    <div class="container" id="new-genre-box" style="display:none;">
+                        <div class="row">
+                            @Html.TextBoxFor(m => m.Genre, new { @class = "txt-add-genre form-control col-sm-9" })
+                            <input type="button" id="btn-submit-genre" class="btn btn-default btn col-sm-2" title="Add Genre" value="Submit" />
+                            @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "error-msg" })
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="update-cover" class="form-group" style="display: none;">
