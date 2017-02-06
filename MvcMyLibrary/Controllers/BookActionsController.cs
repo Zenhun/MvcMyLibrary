@@ -53,22 +53,6 @@ namespace MvcMyLibrary.Controllers
             return View();
         }
 
-        // POST: BookActions/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // POST: BookActions/Delete/5
         //[HttpPost]
         public ActionResult Delete(int id, string image)
@@ -88,6 +72,20 @@ namespace MvcMyLibrary.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        public ActionResult Search(string search, FormCollection formCollection)
+        {
+            bool chkSwitch = false;
+            if(formCollection["chkSwitch"] == "on")
+                chkSwitch = true;
+            List<CompleteBook> books = BookActions.Search(search, chkSwitch);
+            TempData["books"] = books;
+            
+
+            //i'm passing model to a different controller so I have to use TempData
+            //TempData = short lived session used for redirects
+            return RedirectToAction("Index", "Home");
         }
     }
 }

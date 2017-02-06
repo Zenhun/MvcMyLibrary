@@ -27,6 +27,11 @@
         $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
     }
 
+    $("#chkSwitch").click(function () {
+        $(this).closest(".switch").toggleClass("active");
+
+    });
+
     $(".flex-item").not($(".book-edit, .book-delete")).click(function () {
         //don't change book info if clicked on the same book
         if (selectedBook !== $(this).attr("id")) {

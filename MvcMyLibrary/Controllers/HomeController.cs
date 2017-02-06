@@ -14,7 +14,11 @@ namespace MvcMyLibrary.Controllers
 
         public ActionResult Index()
         {
-            List<CompleteBook> books = bookList.GetCompleteBooks();
+            List<CompleteBook> books = new List<CompleteBook>();
+            if (TempData["books"] != null)
+                books = (List<CompleteBook>)TempData["books"];
+            else
+                books = bookList.GetCompleteBooks();
             
             return View(books);
         }

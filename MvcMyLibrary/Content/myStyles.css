@@ -1,5 +1,22 @@
 ﻿* { box-sizing: border-box;}
 body { margin-top: 50px!important; background-color: #EFEFEF;}
+.navbar-header .search-form { display: inline-block; width: 330px; position: relative; top: 8px;margin-right: 30px;}
+.navbar-header .txt-search {display: inline; color: #999999; background-color: #333333; border: 1px solid #484747; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+.navbar-header .txt-search:focus {border-color: #66afe9;}
+.navbar-header #btn-search { display: inline-block; position: relative; right: 4px; height: 34px; width: 29px; padding: 0; background-color: #333333; border: 1px solid #484747; border-left:none; border-bottom-left-radius: 0; border-top-left-radius: 0;}
+.navbar-header #btn-search:hover {background-color: #3a3a3a;}
+.navbar-header #btn-search span {top: 3px; color: #999999;}
+.switch { position: relative; top: 8px; display: inline-block; width: 12px; height: 21px; float: right;}
+.switch::before {content: 'Title'; color: white; transition: color 0.5s;}
+.switch::after {content: 'Author'; color: #999999; transition: color 0.5s;}
+.switch::before, .switch::after {font-size: 9px; position: relative; left: 15px; top: -12px; font-weight: 100;}
+.switch.active::before {color: #999999;}
+.switch.active::after {color: white;}
+.switch #chkSwitch {display:none;}
+.slider { position: absolute; cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;background-color: #3e3e3e; border: 1px solid #616060;border-radius: 34px;-webkit-transition: .4s; transition: .4s;}
+.slider:before {position: absolute;content: "";height: 8px;width: 8px;left: 1px;bottom: 9px;background-color: #66afe9;border-radius: 50%;-webkit-transition: .4s;transition: .4s;}
+#chkSwitch:focus + .slider { box-shadow: 0 0 1px #2196F3;}
+#chkSwitch:checked + .slider:before {  -webkit-transform: translateY(7px);  -ms-transform: translateY(7px);  transform: translateY(7px);}
 
 #sidebar {position:fixed; top: 50px; left: 0; width: 250px; height: 100%; background-color: #F3F5F5; display: inline-block;}
 #sidebar ul {padding: 0;}

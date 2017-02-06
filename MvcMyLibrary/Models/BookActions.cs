@@ -128,5 +128,35 @@ namespace MvcMyLibrary.Models
         }
 
 
+
+        internal static List<CompleteBook> Search(string search, bool chkSwitch)
+        {
+            List<CompleteBook> books = new List<CompleteBook>();
+
+            using (var dbLibrary = new MyLibraryContext())
+            {
+                var booksLib = (from b in dbLibrary.Books
+                              join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
+                              join g in dbLibrary.Genres on b.GenreId equals g.GenreId
+                                where (chkSwitch ? (a.Name + a.Surname).Contains(search) : b.Title.Contains(search) )
+                              orderby b.Title
+                              select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
+
+                foreach (var book in booksLib)
+                {
+                    CompleteBook newBook = new CompleteBook();
+                    newBook.BookId = book.BookId;
+                    newBook.Title = book.Title;
+                    newBook.AuthorName = book.Name;
+                    newBook.AuthorSurname = book.Surname;
+                    newBook.GenreId = book.GenreId;
+                    newBook.Genre = book.GenreName;
+                    newBook.CoverImageUrl = book.ImageUrl;
+                    books.Add(newBook);
+                }
+            }
+
+            return books;
+        }
     }
 }
