@@ -52,22 +52,40 @@ namespace MvcMyLibrary.Models
             }
         }
 
-        public static void GenreSave(string genre)
+        public static void BookDelete(int bookId, string path)
         {
+            using (var library = new MyLibraryContext())
+            {
+                var book = from b in library.Books
+                           where b.BookId == bookId
+                           select b;
+
+                library.Books.Remove(book.First());
+                library.SaveChanges();
+            }
+
+            //prevent deleting noimage.jpg file
+            if (File.Exists(path) && path != "")
+            {
+                File.Delete(path);
+            }
+        }
+
+        public static int GenreSave(string genre)
+        {
+            int genreId;
             using (MyLibraryContext dbLibrary = new MyLibraryContext())
             {
-                SqlParameter paramGenre = new SqlParameter("@genre", genre);
-                int genreCheck = dbLibrary.Database.ExecuteSqlCommand("SELECT * FROM Genre WHERE GenreName = @genre", paramGenre);
+                var paramOut = new SqlParameter("@output", SqlDbType.Int);
+                paramOut.Direction = ParameterDirection.Output;
 
-                if (genreCheck != 1)
-                {
-                    var newGenre = new Genre();
-                    newGenre.GenreName = genre;
-                    dbLibrary.Genres.Add(newGenre);
-                    dbLibrary.SaveChanges();
-    
-                }
+                var paramGenre = new SqlParameter("@genreName", genre);
+                var data = dbLibrary.Database.SqlQuery<object>("EXEC @output = checkAndInsertGenre @genreName", paramOut, paramGenre).FirstOrDefault();
+
+                genreId = (int)paramOut.Value;
             }
+
+            return genreId;
         }
 
         public static string GetImageUrl(HttpPostedFileBase imageUrlFile)

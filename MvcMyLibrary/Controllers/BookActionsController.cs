@@ -34,12 +34,11 @@ namespace MvcMyLibrary.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateGenre(string genre)
+        public int CreateGenre(string genre)
         {
-            BookActions.GenreSave(genre);
+            int genreId = BookActions.GenreSave(genre);
 
-            //update what the method returns!!!
-            return RedirectToAction("Index", "Home");
+            return genreId;
         }
 
         // GET: BookActions/Details/5
@@ -72,21 +71,17 @@ namespace MvcMyLibrary.Controllers
 
         // POST: BookActions/Delete/5
         //[HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, string image)
         {
             try
             {
-                // TODO: Add delete logic here
-                using (var library = new MyLibraryContext())
-                {
-                    var book = from b in library.Books
-                               where b.BookId == id
-                               select b;
-
-                    library.Books.Remove(book.First());
-                    library.SaveChanges();
-                }
-
+                string path;
+                // delete book from db and image file from server
+                if(image != "noimage.jpg")
+                    path = Request.MapPath("~/Content/Images/" + image);
+                else
+                    path = "";
+                BookActions.BookDelete(id, path);
                 return RedirectToAction("Index", "Home");
             }
             catch

@@ -38,7 +38,7 @@
 
             $title.text($(this).find(".title span").text());
             $author.html($(this).children(".author").text());
-            //$cover.append("<img src='" + $(this).find("img").attr("src") + "' />");
+            $cover.append("<img src='" + $(this).find("img").attr("src") + "' height='200' width='auto' />");
             $genre.html("<b>Genre: </b>" + $(this).children(".genre").text());
 
 
@@ -49,7 +49,7 @@
                 console.log(data);
                 //$bookTitle.text(data.items["0"].volumeInfo.title);
                 $subtitle.text(data.items["0"].volumeInfo.subtitle);
-                $cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
+                //$cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
                 $rating.html("<b>Rating: </b>" + data.items["0"].volumeInfo.averageRating);
                 $description.html("<b>Description: </b>" + data.items["0"].volumeInfo.description);
                 $("#bookInfo").fadeIn(300);
@@ -85,6 +85,26 @@
         }
     });
 
+    //close bookInfo panel
+    $("#close-bookInfo").click(function () {
+        $("#bookInfo").fadeOut(200);
+        //reset "selected" otherwise I can't reopen book Info of the same book I just closed with "close-bookInfo"
+        //because "selected" still has the sam book id
+        selectedBook = 0;
+    });
+
+    //bookInfo panel stays fixed vertically but moves horizontally if window gets narrower
+    // (I didn't use fixed position because bookInfo panel is taken out of the flow and if I shrink the window bookInfo panel covers the main book list)
+    $(window).scroll(function () {
+        $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
+
+        //show-hide scroll-to-top button
+        if ($(this).scrollTop() > 100)
+            $(".to-top").slideDown(300);
+        else
+            $(".to-top").slideUp(300);
+    });
+
     $("a.book-edit").click(function () {
         var $book = $(this).closest(".flex-item");
         var $modal = $("#newBookModal");
@@ -103,44 +123,65 @@
 
     $("#change-cover").click(function () {
         $("#upload-box").slideToggle();
-
     });
 
+//SECTION: new genre
+    //show new genre input field
     $("#btn-add-genre").click(function () {
         $("#new-genre-box").fadeIn().find("#Genre").focus();
+        //have to hide this elements because disabled Submit button is seethrough
+        $("select.ddl-genre, input#btn-add-genre").hide();
     });
-
-    //close bookInfo panel
-    $("#close-bookInfo").click(function () {
-        $("#bookInfo").fadeOut(200);
-        //reset "selected" otherwise I can't reopen book Info of the same book I just closed with "close-bookInfo"
-        //because "selected" still has the sam book id
-        selectedBook = 0;
+    //disable submit button if genre textbox is empty
+    $("#Genre").keyup(function () {
+        if ($(this).val() !== "")
+            $("#btn-submit-genre").removeClass("disabled");
+        else
+            $("#btn-submit-genre").addClass("disabled");
     });
+    //show dropdown when new genre box loses focus
+    $("#new-genre-box").focusout(function () {
+        //if none of the new-genre-box childs is in focus
+        if ($(this).has(document.activeElement).length == 0)
+        {
+            $(this).fadeOut();
+            $("select.ddl-genre, input#btn-add-genre").show();
+        }
+    });
+    $("#btn-submit-genre").click(function () {
+        if ($("#Genre").val() !== "") {
+            var $newGenre = $("#Genre.txt-add-genre").val();
 
+            $.ajax({
+                url: '/BookActions/CreateGenre',
+                data: { 'genre': $newGenre },
+                type: 'POST',
+                dataType: 'text'
+            })
+            .success(function (results) {
+                $("#GenreId").append("<option value='" + results + "'>" + $newGenre + "</option>");
+            })
+            .error(function (xhr, status) {
+                alert(status);
+            });
+        }
+        //$("#new-genre-box").fadeOut();
+        $("#Genre").val("");
+        $("select.ddl-genre").focus();
+    });
+//new genre
+
+    //scroll to top
     $(".to-top").click(function () {
         $('html, body').animate({ scrollTop: 0 }, 500);
     });
-
-    //bookInfo panel stays fixed vertically but moves horizontally if window gets narrower
-    // (I didn't use fixed position because bookInfo panel is taken out of the flow and if I shrink the window bookInfo panel covers the main book list)
-    $(window).scroll(function () {
-        $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
-
-        //show-hide scroll-to-top button
-        if($(this).scrollTop() > 100)
-            $(".to-top").slideDown(300);
-        else
-            $(".to-top").slideUp(300);
-    });
-
 
     ////prevent vertical scroll bar on New Book modal popup
     //$('#newBookModal').on('show.bs.modal', function () {
     //    $('body, .navbar').css("margin-right", "0px");
     //});
 
-    
+    //on modal close
     $("#newBookModal").on('hidden.bs.modal', function () {
         //empty form fields on modal close
         $(this).find("input.form-control, select, input[type=file]").val("");
@@ -157,8 +198,9 @@
         $("#new-genre-box").hide();
     })
 
+    //if new book: data-target = 0
+    //if edit book: data-targer = bookId
     $("[data-target='#newBookModal']").click(function () {
-        var passedID = $(this).data('id');
-        $("#hiddenId").val(passedID);
+        $("#hiddenId").val($(this).data('id'));
     });
 });

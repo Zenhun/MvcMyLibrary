@@ -50,8 +50,8 @@
                     @Html.ValidationMessageFor(m => m.GenreId, "", new { @class = "error-msg" })
                     <div class="container" id="new-genre-box" style="display:none;">
                         <div class="row">
-                            @Html.TextBoxFor(m => m.Genre, new { @class = "txt-add-genre form-control col-sm-9" })
-                            <input type="button" id="btn-submit-genre" class="btn btn-default btn col-sm-2" title="Add Genre" value="Submit" />
+                            @Html.TextBoxFor(m => m.Genre, new { @class = "txt-add-genre form-control col-sm-9", @placeholder="Enter Genre" })
+                            <input type="button" id="btn-submit-genre" class="btn btn-default btn col-sm-2 disabled" title="Add Genre" value="Submit" />
                             @Html.ValidationMessageFor(m => m.Genre, "", new { @class = "error-msg" })
                         </div>
                     </div>
