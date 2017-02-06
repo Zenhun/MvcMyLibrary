@@ -127,18 +127,27 @@ namespace MvcMyLibrary.Models
             return authorId;
         }
 
-
-
         internal static List<CompleteBook> Search(string search, bool chkSwitch)
         {
             List<CompleteBook> books = new List<CompleteBook>();
 
+            //spliting the search string, approximating everything after first space as surname
+            //in order to search for eg. "Anne Rice"
+            string[] names = search.ToString().Trim().Split(new char[] { ' ' }, 2);
+            string name = names[0];
+            string surname;
+            //check if there are at least two words in search string
+            if (names.Length > 1)
+                surname = names[1];
+            else
+                surname = name;
+            
             using (var dbLibrary = new MyLibraryContext())
             {
                 var booksLib = (from b in dbLibrary.Books
                               join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
                               join g in dbLibrary.Genres on b.GenreId equals g.GenreId
-                                where (chkSwitch ? (a.Name + a.Surname).Contains(search) : b.Title.Contains(search) )
+                              where (chkSwitch ? (a.Name.Contains(name) || a.Surname.Contains(surname)) : b.Title.Contains(search) )
                               orderby b.Title
                               select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
 

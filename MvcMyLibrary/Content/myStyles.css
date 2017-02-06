@@ -7,7 +7,7 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 .navbar-header #btn-search:hover {background-color: #3a3a3a;}
 .navbar-header #btn-search span {top: 3px; color: #999999;}
 .switch { position: relative; top: 8px; display: inline-block; width: 12px; height: 21px; float: right;}
-.switch::before {content: 'Title'; color: white; transition: color 0.5s;}
+.switch::before {content: 'Title'; color: white; transition: color 0.5s;letter-spacing: 0.5px;}
 .switch::after {content: 'Author'; color: #999999; transition: color 0.5s;}
 .switch::before, .switch::after {font-size: 9px; position: relative; left: 15px; top: -12px; font-weight: 100;}
 .switch.active::before {color: #999999;}
@@ -18,7 +18,7 @@ body { margin-top: 50px!important; background-color: #EFEFEF;}
 #chkSwitch:focus + .slider { box-shadow: 0 0 1px #2196F3;}
 #chkSwitch:checked + .slider:before {  -webkit-transform: translateY(7px);  -ms-transform: translateY(7px);  transform: translateY(7px);}
 
-#sidebar {position:fixed; top: 50px; left: 0; width: 250px; height: 100%; background-color: #F3F5F5; display: inline-block;}
+#sidebar {position:fixed; top: 50px; left: 0; width: 240px; height: 100%; background-color: #F3F5F5; display: inline-block;}
 #sidebar ul {padding: 0;}
 #sidebar .genre-link {height: 50px;line-height: 50px; list-style:none;}
 #sidebar .genre-link.active {background-color: #EFEFEF; border-left: 1px solid #6d6d6d;}

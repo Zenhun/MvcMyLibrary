@@ -28,8 +28,10 @@
     }
 
     $("#chkSwitch").click(function () {
-        $(this).closest(".switch").toggleClass("active");
-
+        if($(this).is(":checked"))
+            $(this).closest(".switch").addClass("active");
+        else
+            $(this).closest(".switch").removeClass("active");
     });
 
     $(".flex-item").not($(".book-edit, .book-delete")).click(function () {
