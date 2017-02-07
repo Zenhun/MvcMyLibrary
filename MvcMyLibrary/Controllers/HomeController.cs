@@ -37,22 +37,8 @@ namespace MvcMyLibrary.Controllers
                                   orderby g.GenreName
                                   select g).ToList();
 
-            //obrati pažnju da se vraća PartialView
+            //notice that a PartialView is being returned
             return PartialView(genres);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

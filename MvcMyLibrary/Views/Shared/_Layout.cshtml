@@ -13,33 +13,18 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 @Html.ActionLink("Library", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @using (Html.BeginForm("Search", "BookActions", FormMethod.Post, new { @class = "search-form"}))
-                {
-                    @Html.TextBox("search", "", new { @class = "txt-search form-control", @placeholder = "Search" })
-                    <button type="submit" id="btn-search" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+                <a href="#" class="navbar-brand" data-toggle="modal" data-id="0" data-target="#newBookModal">Add Book</a>
+                   @using (Html.BeginForm("Search", "BookActions", FormMethod.Post, new { @class = "search-form" })) { @Html.TextBox("search", "", new { @class = "txt-search form-control", @placeholder = "Search" })  <button type="submit" id="btn-search" class="btn"><span class="glyphicon glyphicon-search"></span></button>
                     <label for="chkSwitch" class="switch">
                         <input type="checkbox" id="chkSwitch" name="chkSwitch">
                         <div class="slider"></div>
                     </label>
-                }
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+}
             </div>
         </div>
     </div>
-    <div class="@*container*@ body-content">
+    <div class="body-content">
         @RenderBody()
         <div id="sidebar">
             @{Html.RenderAction("SideBar"); }

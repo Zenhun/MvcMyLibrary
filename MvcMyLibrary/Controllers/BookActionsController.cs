@@ -41,18 +41,6 @@ namespace MvcMyLibrary.Controllers
             return genreId;
         }
 
-        // GET: BookActions/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: BookActions/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
         // POST: BookActions/Delete/5
         //[HttpPost]
         public ActionResult Delete(int id, string image)
