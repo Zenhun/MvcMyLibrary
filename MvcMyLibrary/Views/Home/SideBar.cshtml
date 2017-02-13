@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<MvcMyLibrary.Models.Genre>
 
-<input type="button" class="btn btn-block" data-toggle="modal" data-id="0" data-target="#newBookModal" value="Add Book" />
-<ul>
-    @foreach (var genre in @Model)
-    {
-        <li class="genre-link" id="@genre.GenreId">
-            @Html.ActionLink(genre.GenreName, "IndexGenre", new { GenreId = genre.GenreId })
-        </li>
-    }
-</ul>
+<div>
+    <button type="button" class="btn btn-block" id="btn-genre" data-toggle="collapse" data-target="#myGenres" style="display: none;">
+        Genres
+    </button>
+    <div id="myGenres">
+        <ul>
+            @foreach (var genre in @Model)
+            {
+                <li class="genre-link" id="@genre.GenreId">
+                    @Html.ActionLink(genre.GenreName, "IndexGenre", new { GenreId = genre.GenreId })
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -27,6 +27,8 @@
         $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
     }
 
+    $("#btn-genre").click(function () { $("#myGenres").slideToggle() });
+
     $("#chkSwitch").click(function () {
         if($(this).is(":checked"))
             $(this).closest(".switch").addClass("active");

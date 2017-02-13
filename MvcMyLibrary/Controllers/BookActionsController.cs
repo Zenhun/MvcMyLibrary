@@ -10,7 +10,6 @@ namespace MvcMyLibrary.Controllers
 {
     public class BookActionsController : Controller
     {
-        //MyLibraryContext dbLibrary = new MyLibraryContext();
         [HttpPost]
         public ActionResult SaveUpdateBook(int hiddenId, string Title, string AuthorName, string AuthorSurname, int GenreId, HttpPostedFileBase ImageUrl)
         {
