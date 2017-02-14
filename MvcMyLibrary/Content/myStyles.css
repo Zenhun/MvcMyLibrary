@@ -94,8 +94,8 @@ body { margin-top: 50px!important; background-color: #EFEFEF; background-image: 
 
 @media (max-width: 767px) { 
     body { margin-top: 80px!important;}
-    #btn-genre {display: block!important;}
-    #myGenres {display: none;}
+    /*#btn-genre {display: block!important;}
+    #myGenres {display: none;}*/
 }
 
 @media (max-width: 622px) {

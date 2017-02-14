@@ -9,7 +9,21 @@
     var selectedBook = 0;
 
     //fade in book list
-    $(".flex-container .flex-item").each(function () { $(this).fadeIn(300);});
+    $(".flex-container .flex-item").each(function () { $(this).fadeIn(300); });
+
+    function checkWdith() {
+        if ($(window).width() > 767) {
+            $("#myGenres").show();
+            $("#btn-genre").hide();
+        }
+        else {
+            $("#myGenres").hide();
+            $("#btn-genre").show();
+        }
+    };
+
+    //check widnow width on load
+    checkWdith();
 
     //function to parse parameters from query string
     function getUrlParameter(name) {
@@ -26,6 +40,11 @@
         //find child of #sidebar ul element with id parameter equal to GenreId in query string
         $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
     }
+
+    //check widnow width on resize
+    $(window).resize(function () {
+        checkWdith();
+    });
 
     $("#btn-genre").click(function () { $("#myGenres").slideToggle() });
 
