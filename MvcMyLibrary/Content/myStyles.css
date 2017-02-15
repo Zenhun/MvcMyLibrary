@@ -102,13 +102,13 @@ body { margin-top: 50px!important; background-color: #EFEFEF; background-image: 
     #add-book-popup .save-buttons {margin: 0; padding-bottom: 20px;}
 }
 
-@media (max-width: 622px) {
-    body {margin-top: 130px!important;}
+@media (max-width: 628px) {
+    body {margin-top: 120px!important;}
     .navbar-header .search-form {margin-left:5px; width: 280px; display: block;}
     .navbar-header .txt-search{max-width: 230px;}
-    #sidebar {top:85px;}
-    .navbar-inverse {height: 85px;}
-    .navbar-inverse a.navbar-brand { font-size: 14px; padding: 7px 5px;}
+    #sidebar {top:72px;}
+    .navbar-inverse {height: 72px;}
+    .navbar-inverse a.navbar-brand {padding: 7px 5px; float:none;}
     #myGenres .genre-link {background-color: rgba(222, 203, 184, 0.7);}
     #myGenres .genre-link a { color: #4c4c4c;}
 }
