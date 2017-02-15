@@ -1,3 +1,5 @@
+*** use MyLibrary.bak to restore or MyLibraryScripts.sql to create database ***
+
 <b>My Library</b> is a place where you can easily keep track of the books you own.
 
 You can:
