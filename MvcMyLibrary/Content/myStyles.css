@@ -108,7 +108,7 @@ body { margin-top: 50px!important; background-color: #EFEFEF; background-image: 
     .navbar-header .txt-search{max-width: 230px;}
     #sidebar {top:72px;}
     .navbar-inverse {height: 72px;}
-    .navbar-inverse a.navbar-brand {padding: 7px 5px; float:none;}
+    .navbar-inverse a.navbar-brand {padding: 7px 5px; float:none; }
     #myGenres .genre-link {background-color: rgba(222, 203, 184, 0.7);}
     #myGenres .genre-link a { color: #4c4c4c;}
 }
