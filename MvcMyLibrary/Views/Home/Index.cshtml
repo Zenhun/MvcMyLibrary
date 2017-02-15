@@ -6,25 +6,32 @@
 <div class="container" style="max-width: 1800px; ">
     <div class="row">
         <div class="flex-container col-md-7 col-md-offset-2">
-            @foreach (var book in Model)
+            @if (Model.Count() == 0)
             {
-                <div class="flex-item" id="@book.BookId">
-                    @*span is needed so that book.Title is closed inside tags, with no spaces around*@
-                    @*otherwise book.Title gets all the tabs and line breaks till the closing div tag when used as Book API search string*@
-                    <div class="title"><span>@book.Title</span>
-                    <div class="book-icons">
-                            <a href="#" class="book-edit" title="edit" data-id="@book.BookId" data-toggle="modal" data-target="#newBookModal"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="@Url.Action("Delete", "BookActions", new { @id = @book.BookId, @image = @book.CoverImageUrl })" onclick="if (confirm('Are you sure?')) return true; return false" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                <div id="no-data">No data to display</div>
+            }
+            else
+            {
+                foreach (var book in Model)
+                {
+                    <div class="flex-item" id="@book.BookId">
+                        @*span is needed so that book.Title is closed inside tags, with no spaces around*@
+                        @*otherwise book.Title gets all the tabs and line breaks till the closing div tag when used as Book API search string*@
+                        <div class="title"><span>@book.Title</span>
+                        <div class="book-icons">
+                                <a href="#" class="book-edit" title="edit" data-id="@book.BookId" data-toggle="modal" data-target="#newBookModal"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="@Url.Action("Delete", "BookActions", new { @id = @book.BookId, @image = @book.CoverImageUrl })" onclick="if (confirm('Are you sure?')) return true; return false" class="book-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
                         </div>
-                    </div>
-                    <p class="author">@book.AuthorName @book.AuthorSurname</p>
-                    <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="162" width="114" /></p>
-                    <p class="genre"><a href="@Url.Action("IndexGenre", "Home", new {@GenreId = @book.GenreId})">@book.Genre</a></p>
+                        <p class="author">@book.AuthorName @book.AuthorSurname</p>
+                        <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="162" width="114" /></p>
+                        <p class="genre"><a href="@Url.Action("IndexGenre", "Home", new {@GenreId = @book.GenreId})">@book.Genre</a></p>
                         
-                    @Html.Hidden("hidAuthorName", @book.AuthorName)
-                    @Html.Hidden("hidAuthorSurname", @book.AuthorSurname)
-                    @Html.Hidden("hidGenreId", @book.GenreId)
-                </div>
+                        @Html.Hidden("hidAuthorName", @book.AuthorName)
+                        @Html.Hidden("hidAuthorSurname", @book.AuthorSurname)
+                        @Html.Hidden("hidGenreId", @book.GenreId)
+                    </div>
+                }
             }
         </div>
 

@@ -180,14 +180,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\20160306_185631-01.jpeg" />
     <Content Include="Content\Images\BornToRun.jpg" />
     <Content Include="Content\Images\DarkElfTrilogy.jpg" />
     <Content Include="Content\Images\FourAgreements.jpg" />
-    <Content Include="Content\Images\home_icon_30.png" />
     <Content Include="Content\Images\IcewindDale.jpg" />
     <Content Include="Content\Images\LionsMouth.jpg" />
     <Content Include="Content\Images\noimage.jpg" />
+    <Content Include="Content\Images\pexels-photo-old paper.jpeg" />
     <Content Include="Content\Images\the-vampire-lestat.jpg" />
     <Content Include="Content\Images\VoiceOfKnowledge.jpg" />
     <Content Include="Content\myStyles.css" />

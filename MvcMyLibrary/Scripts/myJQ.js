@@ -12,7 +12,7 @@
     $(".flex-container .flex-item").each(function () { $(this).fadeIn(300); });
 
     function checkWdith() {
-        if ($(window).width() > 767) {
+        if ($(window).width() > 860) {
             $("#myGenres").show();
             $("#btn-genre").hide();
         }
@@ -22,8 +22,12 @@
         }
     };
 
-    //check widnow width on load
+    //check window width on load
     checkWdith();
+    //check widnow width on resize
+    $(window).resize(function () {
+        checkWdith();
+    });
 
     //function to parse parameters from query string
     function getUrlParameter(name) {
@@ -41,11 +45,6 @@
         $("#sidebar ul").find("[id=" + activeGenreId + "]").addClass("active");
     }
 
-    //check widnow width on resize
-    $(window).resize(function () {
-        checkWdith();
-    });
-
     $("#btn-genre").click(function () { $("#myGenres").slideToggle() });
 
     $("#chkSwitch").click(function () {
@@ -55,7 +54,7 @@
             $(this).closest(".switch").removeClass("active");
     });
 
-    $(".flex-item").not($(".book-edit, .book-delete")).click(function () {
+    $(".flex-item").click(function () {
         //don't change book info if clicked on the same book
         if (selectedBook !== $(this).attr("id")) {
             $("#bookInfo").hide();
@@ -75,39 +74,12 @@
             var bookSrc = "https://www.googleapis.com/books/v1/volumes?q='" + encodeURIComponent($title.text() + "' '" + $author.text()) + "'&maxResults=1";
             $.getJSON(bookSrc, function (data) {
                 console.log(data);
-                //$bookTitle.text(data.items["0"].volumeInfo.title);
                 $subtitle.text(data.items["0"].volumeInfo.subtitle);
-                //$cover.append("<img src='" + data.items["0"].volumeInfo.imageLinks.thumbnail + "' />");
                 $rating.html("<b>Rating: </b>" + data.items["0"].volumeInfo.averageRating);
                 $description.html("<b>Description: </b>" + data.items["0"].volumeInfo.description);
                 $("#bookInfo").fadeIn(300);
                 $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
             });
-
-
-            ////Goodreads API version
-
-            ////Goodreads API returns xml data but forces me to use dataType: "jsonp" because of cross-origin ajax request
-            ////that's why I'm using yahoo's YQL (Yahoo Query Language) that's serves as a json proxy
-
-            ////encodeURIComponents function encodes special characters, including: , / ? : @ & = + $ #
-            //var bookSrc = "https://www.goodreads.com/search.xml?key=V6Iwmnm75zR91VuldBgZgw&q='" + encodeURIComponent($title.text() + "' '" + $author.text() + "'");
-
-            //$.get("http://query.yahooapis.com/v1/public/yql",
-            //    {
-            //        q: "select * from xml where url=\"" + bookSrc + "\"",
-            //        format: "xml"
-            //    },
-            //    function (xml) {
-            //        // contains XML with the following structure:
-            //        // <query>
-            //        //   <results>
-            //        //     <GoodreadsResponse>
-            //        //        ...
-            //        console.log(xml);
-            //        console.log("Title: " +$(xml).find("work").first().find("title").text());
-            //    }
-            //);
 
             selectedBook = $(this).attr("id");
         }
@@ -203,11 +175,6 @@
     $(".to-top").click(function () {
         $('html, body').animate({ scrollTop: 0 }, 500);
     });
-
-    ////prevent vertical scroll bar on New Book modal popup
-    //$('#newBookModal').on('show.bs.modal', function () {
-    //    $('body, .navbar').css("margin-right", "0px");
-    //});
 
     //on modal close
     $("#newBookModal").on('hidden.bs.modal', function () {
