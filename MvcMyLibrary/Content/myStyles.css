@@ -65,7 +65,7 @@ body { margin-top: 50px!important; background-color: #EFEFEF; background-image: 
 #add-book-popup .form-group {padding-top: 25px;}
 #add-book-popup .ddl-genre {width: 90%; border-top-right-radius: 0; border-bottom-right-radius: 0;}
 #add-book-popup #btn-add-genre {width: 10%; padding: 6px 2px; margin-left: -1px; font-family: monospace; font-size: 12px; line-height: 20px; border-top-left-radius: 0; border-bottom-left-radius: 0;}
-#add-book-popup .txt-add-genre { position:absolute; top: 0; max-width: 286px;}
+#add-book-popup .txt-add-genre { position:absolute; top: 0; width:286px; max-width: 74%;}
 #add-book-popup #btn-submit-genre {position: absolute; top: 0; right: 15px; padding: 6px;}
 #add-book-popup #update-cover { margin-top: 30px;}
 #add-book-popup #update-cover img { margin-left: 17px; box-shadow: 0 0 9px 0px #868484;}
@@ -74,13 +74,13 @@ body { margin-top: 50px!important; background-color: #EFEFEF; background-image: 
 .error-msg {color: red; font-size: 11px;}
 
 @media (max-width: 1762px){
-    #bookInfo {background-color: rgba(255, 255, 255, 0.98); padding: 60px; position: absolute; top: 100px!important; width: 40%; left: 30%; box-shadow: 0 0 9px #afabab;}
+    #bookInfo {background-color: rgba(255, 255, 255, 0.98); padding: 60px; position: absolute; top: 100px; width: 40%; left: 30%; box-shadow: 0 0 9px #afabab;}
     .flex-container { max-width: 80%; }
 }
 
 @media (max-width: 1550px) {
     .flex-item { width: 45%; max-width: 45%; }
-     #bookInfo {width: 60%; left: 20%; top: 100px!important;}
+     #bookInfo {width: 60%; left: 20%; }
 }
 
 @media (max-width: 991px) {

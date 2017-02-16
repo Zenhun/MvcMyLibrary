@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using MvcMyLibrary.Models;
-using System.Data.SqlClient;
 
 namespace MvcMyLibrary.Controllers
 {
@@ -33,11 +30,11 @@ namespace MvcMyLibrary.Controllers
         }
 
         [HttpPost]
-        public int CreateGenre(string genre)
+        public ActionResult CreateGenre(string genre)
         {
             int genreId = BookActions.GenreSave(genre);
 
-            return genreId;
+            return Json(new { genreId = genreId });
         }
 
         // POST: BookActions/Delete/5

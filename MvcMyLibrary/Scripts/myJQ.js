@@ -93,11 +93,7 @@
         selectedBook = 0;
     });
 
-    //bookInfo panel stays fixed vertically but moves horizontally if window gets narrower
-    // (I didn't use fixed position because bookInfo panel is taken out of the flow and if I shrink the window bookInfo panel covers the main book list)
     $(window).scroll(function () {
-        $("#bookInfo").offset({ top: $(window).scrollTop() + 100 });
-
         //show-hide scroll-to-top button
         if ($(this).scrollTop() > 100)
             $(".to-top").slideDown(300);
@@ -156,10 +152,10 @@
                 url: '/BookActions/CreateGenre',
                 data: { 'genre': $newGenre },
                 type: 'POST',
-                dataType: 'text'
+                dataType: 'json'
             })
             .success(function (results) {
-                $("#GenreId").append("<option value='" + results + "'>" + $newGenre + "</option>");
+                $("#GenreId").append("<option value='" + results.genreId + "'>" + $newGenre + "</option>");
             })
             .error(function (xhr, status) {
                 alert(status);
