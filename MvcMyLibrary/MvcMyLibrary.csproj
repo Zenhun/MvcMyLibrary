@@ -160,6 +160,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookActionsController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,7 +185,9 @@
     <Content Include="Content\Images\DarkElfTrilogy.jpg" />
     <Content Include="Content\Images\FourAgreements.jpg" />
     <Content Include="Content\Images\IcewindDale.jpg" />
+    <Content Include="Content\Images\interview-with-the-vampire.jpg" />
     <Content Include="Content\Images\LionsMouth.jpg" />
+    <Content Include="Content\Images\NaturalBornHeroes.jpg" />
     <Content Include="Content\Images\noimage.jpg" />
     <Content Include="Content\Images\pexels-photo-old paper.jpeg" />
     <Content Include="Content\Images\the-vampire-lestat.jpg" />
@@ -230,6 +233,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\SideBar.cshtml" />
     <Content Include="Views\Shared\_newBook.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
+    <Content Include="Views\Genres\Details.cshtml" />
+    <Content Include="Views\Genres\Edit.cshtml" />
+    <Content Include="Views\Genres\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

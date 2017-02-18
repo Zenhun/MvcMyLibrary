@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <p class="author">@book.AuthorName @book.AuthorSurname</p>
-                        <p class="cover"><img src="~/Content/Images/@book.CoverImageUrl" height="162" width="114" /></p>
+                        <p class="cover"><img src="~/Content/Images/@(book.CoverImageUrl == "" ? "noimage.jpg" : book.CoverImageUrl)" height="162" width="114" /></p>
                         <p class="genre"><a href="@Url.Action("IndexGenre", "Home", new {@GenreId = @book.GenreId})">@book.Genre</a></p>
                         
                         @Html.Hidden("hidAuthorName", @book.AuthorName)
@@ -53,7 +53,12 @@
 
 
 @*--New Book POPUP--*@
-<div id="newBookModal" class="modal fade" role="dialog">
+@*<div id="newBookModal" class="modal fade" role="dialog">*@
     @*pass new model, otherwise _newBook view will expect Index model which is IEnumerable<MvcMyLibrary.Models.CompleteBook>*@
-    @Html.Partial("_newBook", new MvcMyLibrary.Models.CompleteBook())
-</div>
+    @*@Html.Partial("_newBook", new MvcMyLibrary.Models.CompleteBook())*@
+@*</div>*@
+
+@*Edit Genre POPUP*@
+@*<div id="editGenreModal" class="modal fade" role="dialog">
+    @{Html.RenderAction("Index", "Genres");}
+</div>*@

@@ -31,12 +31,8 @@ namespace MvcMyLibrary.Controllers
         [ChildActionOnly]
         public ActionResult SideBar()
         {
-            List<Genre> genres = (from g in dbLibrary.Genres
-                                  orderby g.GenreName
-                                  select g).ToList();
-
             //notice that a PartialView is being returned
-            return PartialView(genres);
+            return PartialView(BookActions.GetGenres());
         }
     }
 }

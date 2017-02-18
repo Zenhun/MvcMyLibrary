@@ -12,7 +12,7 @@
     $(".flex-container .flex-item").each(function () { $(this).fadeIn(300); });
 
     function checkWdith() {
-        if ($(window).width() > 860) {
+        if ($(window).width() > 991) {
             $("#myGenres").show();
             $("#btn-genre").hide();
         }
@@ -166,6 +166,24 @@
         $("select.ddl-genre").focus();
     });
 //new genre
+
+////delete genre
+//    $("a.deleteGenre").click(function (e) {
+//        e.preventDefault();
+//        var id = $(this).attr("id");
+//        if (id !== "") {
+//            $.ajax({
+//                url: '/Genre/Delete',
+//                data: { 'id': id },
+//                type: 'GET',
+//                dataType: 'json'
+//            })
+//            .success(function (partialViewResult) {
+//                $("#genre-container").html(partialViewResult);
+//            });
+//        }
+//    });
+////delete genre
 
     //scroll to top
     $(".to-top").click(function () {

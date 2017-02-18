@@ -9,6 +9,47 @@ namespace MvcMyLibrary.Models
 {
     public class BookActions
     {
+        public static List<CompleteBook> GetCompleteBooks(int GenreId)
+        {
+            MyLibraryContext dbLibrary = new MyLibraryContext();
+
+            var books2 = (from b in dbLibrary.Books
+                          join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
+                          join g in dbLibrary.Genres on b.GenreId equals g.GenreId
+                          orderby b.Title
+                          select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
+
+            if (GenreId != -1)
+            {
+                books2 = (from b in dbLibrary.Books
+                          join a in dbLibrary.Authors on b.AuthorId equals a.AuthorId
+                          join g in dbLibrary.Genres on b.GenreId equals g.GenreId
+                          where g.GenreId == GenreId
+                          orderby b.Title
+                          select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
+            }
+
+
+            //I made a class with all the elements of one book, gather from 3 tables: Books, Authors and Genres
+            List<CompleteBook> books = new List<CompleteBook>();
+
+            foreach (var book in books2)
+            {
+                var modelBook = new CompleteBook();
+                modelBook.BookId = book.BookId;
+                modelBook.Title = book.Title;
+                modelBook.AuthorName = book.Name;
+                modelBook.AuthorSurname = book.Surname;
+                modelBook.GenreId = book.GenreId;
+                modelBook.Genre = book.GenreName;
+                modelBook.CoverImageUrl = book.ImageUrl;
+
+                books.Add(modelBook);
+            }
+
+            return books;
+        }
+
         public static void BookSave(string title, string authorName, string authorSurname, int genreId, HttpPostedFileBase imageUrlFile)
         {
             string imageUrl = GetImageUrl(imageUrlFile);
@@ -70,6 +111,13 @@ namespace MvcMyLibrary.Models
             }
         }
 
+        public static List<Genre> GetGenres()
+        {
+            MyLibraryContext dbLibrary = new MyLibraryContext();
+
+            return (dbLibrary.Genres.OrderBy(g => g.GenreName).ToList());
+        }
+
         public static int GenreSave(string genre)
         {
             int genreId;
@@ -85,6 +133,27 @@ namespace MvcMyLibrary.Models
             }
 
             return genreId;
+        }
+
+        public static bool BookGenreCheck(int genreId)
+        {
+            int result;
+            using (MyLibraryContext dbLibrary = new MyLibraryContext())
+            {
+                var paramOut = new SqlParameter("@output", SqlDbType.Int);
+                paramOut.Direction = ParameterDirection.Output;
+
+                var paramGenreId = new SqlParameter("@genreId", genreId);
+                var data = dbLibrary.Database.SqlQuery<object>("EXEC @output = BookGenreCheck @genreId", paramOut, paramGenreId).FirstOrDefault();
+
+                result = (int)paramOut.Value;
+            }
+
+            //result = -1 --> no books have this genre, ok to delete
+            if (result == -1)
+                return true;
+            else
+                return false;
         }
 
         public static string GetImageUrl(HttpPostedFileBase imageUrlFile)

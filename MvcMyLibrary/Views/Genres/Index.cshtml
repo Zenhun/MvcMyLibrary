@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MvcMyLibrary.Models.Genre>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*popup if genre is associated with a book*@
+@if(TempData["bookExists"] == "true")
+{ 
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("Genre can't be deleted, it's associated with some books.");
+        };
+    </script>
+}
+
+<div class="genre-container">
+    <p class="genre-header">
+        @Html.ActionLink("Create New", "Create",null, new { @class = "genre-create btn btn-default" })
+    </p>
+    
+    <table class="table">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="genre-name">
+                    @Html.DisplayFor(modelItem => item.GenreName)
+                </td>
+                <td class="genre-actions">
+                    <a href="@Url.Action("Edit", "Genres", new { id = item.GenreId })" class=" genre-edit" title="edit"><span class="glyphicon glyphicon-pencil"></span></a> |
+                    <a href="@Url.Action("Delete", "Genres", new { id = item.GenreId })" onclick="if (confirm('Are you sure you want to delete?')) return true; return false" class="genre-delete" title="delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        <a href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-arrow-left back-arrow" title="Back to Library"></span></a>
+    </div>
+</div>

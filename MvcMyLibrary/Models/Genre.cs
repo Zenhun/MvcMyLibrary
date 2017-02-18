@@ -10,7 +10,13 @@ namespace MvcMyLibrary.Models
     {
         [Required]
         public int GenreId { get; set; }
+        [Required]
         public string GenreName { get; set; }
         List<Book> Books { get; set; }
+
+        public static List<Genre> GetGenres()
+        {
+            return BookActions.GetGenres();
+        }
     }
 }

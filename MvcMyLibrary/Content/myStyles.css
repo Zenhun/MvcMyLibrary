@@ -55,11 +55,11 @@ body { margin-top: 50px!important; background-color: #EFEFEF; background-image: 
 #bookInfo #close-bookInfo:hover {color: #484848;}
 #bookInfo #description { max-height: 50vh; overflow-y: auto; padding-right: 7px; margin-right: -16px; }
 
-#add-book-popup { max-width: 640px; margin: 0px auto 0px -320px; box-shadow: 0px 0px 10px rgb(174, 174, 174); position: fixed; top: 120px; left: 50%; margin-left: -350px; z-index: 100; color: #6d6d6d; background-color: white; }
+#add-book-popup, #genres-popup { max-width: 640px; margin: 0px auto 0px -320px; box-shadow: 0px 0px 10px rgb(174, 174, 174); position: fixed; top: 120px; left: 50%; margin-left: -350px; z-index: 100; color: #6d6d6d; background-color: white; }
 #add-book-popup select {max-width: 100%;}
-#add-book-popup .top-bar {width: 100%; height: 45px; line-height: 45px; text-align: center; font-size: 17px; font-weight: bold; background-color: #EFEFEF; align-content: center; box-shadow: 0 1px 6px 0px #bbb9b9;}
-#add-book-popup .x-close {position: relative;top: 11px;right: 8px;}
-#add-book-popup .form-wrap {padding: 35px; }
+.top-bar {width: 100%; height: 45px; line-height: 45px; text-align: center; font-size: 17px; font-weight: bold; background-color: #EFEFEF; align-content: center; box-shadow: 0 1px 6px 0px #bbb9b9;}
+.x-close {position: relative;top: 11px;right: 8px;}
+.form-wrap {padding: 35px; }
 #add-book-popup .form-group label {text-align: right; padding-top: 6px; }
 #add-book-popup .form-group {padding-top: 25px;}
 #add-book-popup .ddl-genre {width: 90%; border-top-right-radius: 0; border-bottom-right-radius: 0;}
@@ -71,6 +71,21 @@ body { margin-top: 50px!important; background-color: #EFEFEF; background-image: 
 #add-book-popup .save-buttons {margin-top: 20px; margin-bottom: 85px; text-align: center;}
 
 .error-msg {color: red; font-size: 11px;}
+
+.genre-container {margin: 50px auto;padding: 0 50px 5px; width: 500px; max-width: 83%;background-color: rgba(243, 245, 245, 0.18); border-radius: 6px; padding-top: 5px;}
+.genre-container .genre-name {font-size: 18px; font-weight: bold; letter-spacing: 0.5px; color: rgba(31, 31, 31, 0.53);}
+.genre-container .genre-actions {text-align: right;}
+.genre-container .genre-actions a {color: rgba(31, 31, 31, 0.53); position: relative; top: 2px;}
+.genre-container .genre-actions .genre-edit:hover {color: #00b100;}
+.genre-container .genre-actions .genre-delete:hover {color: red;}
+.genre-container .back-arrow {font-size: 25px; color: #925933; opacity: 0.7;}
+.genre-container .back-arrow:hover {color: #714e37;}
+.genre-container .genre-header {font-size: 21px; font-weight: bold; color: #9a6c48;}
+.genre-container .genre-create {background-color: rgba(255, 255, 255, 0.2);margin-bottom: 15px;margin-top: 20px; color:rgb(90, 88, 88); font-size: 18px; font-weight: bold;}
+.genre-container input {background-color: rgba(255, 255, 255, 0.2);margin-bottom: 15px;margin-top: 20px; color:rgb(90, 88, 88);}
+.genre-container input[type="text"] {color: #000;}
+.genre-container input[type="submit"] {font-weight: bold;letter-spacing: 0.5px;}
+.genre-container input[type="submit"]:hover, .genre-create:hover { background-color: rgba(255, 255, 255, 0.33);} 
 
 @media (max-width: 1762px){
     #bookInfo {background-color: rgba(255, 255, 255, 0.98); padding: 60px; position: absolute; top: 100px; width: 40%; left: 30%; box-shadow: 0 0 9px #afabab;}

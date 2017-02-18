@@ -37,10 +37,7 @@
                 <label for="GenreId" class="col-sm-3 control-label">Select Genre:</label>
                 <div class="col-sm-8" id="ddGenre">
                     @*new SelectList(@Model.GenreList, "GenreId", "GenreName")  -- GenreId je property iz Genre modela koji prestavlja Value od SelectListItema,
-            -- GenreName je property iz Genre modela koji prestavlja Text od SelectListItema*@
-                    @*@Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select", @title = "Genre" })*@
-                    @*@Html.DropDownList("GenreId", new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "form-control btn-select" })
-            @Html.ValidationMessage("GenreId")*@
+                                                                                -- GenreName je property iz Genre modela koji prestavlja Text od SelectListItema*@
                     <div class="container">
                         <div class="row">
                             @Html.DropDownListFor(m => m.GenreId, new SelectList(@Model.GenreList, "GenreId", "GenreName"), "-- Select Genre --", new { @class = "ddl-genre form-control btn-select col-sm-9" })
