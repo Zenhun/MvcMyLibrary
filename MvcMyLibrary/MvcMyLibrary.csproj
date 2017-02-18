@@ -234,8 +234,6 @@
     <Content Include="Views\Home\SideBar.cshtml" />
     <Content Include="Views\Shared\_newBook.cshtml" />
     <Content Include="Views\Genres\Create.cshtml" />
-    <Content Include="Views\Genres\Delete.cshtml" />
-    <Content Include="Views\Genres\Details.cshtml" />
     <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
   </ItemGroup>

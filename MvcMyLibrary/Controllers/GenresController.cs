@@ -16,21 +16,6 @@ namespace MvcMyLibrary.Controllers
             return View(db.Genres.OrderBy(g => g.GenreName).ToList());
         }
 
-        // GET: Genres/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
-            {
-                return HttpNotFound();
-            }
-            return View(genre);
-        }
-
         // GET: Genres/Create
         public ActionResult Create()
         {
@@ -46,8 +31,11 @@ namespace MvcMyLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Genres.Add(genre);
-                db.SaveChanges();
+                //db.Genres.Add(genre);
+                //db.SaveChanges();
+
+                int result = BookActions.GenreSave(genre.GenreName);
+
                 return RedirectToAction("Index");
             }
 
