@@ -13,7 +13,7 @@ namespace MvcMyLibrary.Controllers
         // GET: Genres
         public ActionResult Index()
         {
-            return View(db.Genres.OrderBy(g => g.GenreName).ToList());
+            return View(BookActions.GetGenres());
         }
 
         // GET: Genres/Create
@@ -31,9 +31,6 @@ namespace MvcMyLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Genres.Add(genre);
-                //db.SaveChanges();
-
                 int result = BookActions.GenreSave(genre.GenreName);
 
                 return RedirectToAction("Index");
@@ -66,8 +63,14 @@ namespace MvcMyLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
-                db.SaveChanges();
+                //check if the same genre exists
+                var genreExists = db.Genres.Count(g => g.GenreName == genre.GenreName);
+                if (genreExists == 0)
+                {
+                    db.Entry(genre).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
             return View(genre);
@@ -83,7 +86,7 @@ namespace MvcMyLibrary.Controllers
                 db.SaveChanges();
             }
             else
-                TempData["bookExists"] = "true";
+                TempData["bookExists"] = "true" ;
             
             return RedirectToAction("Index");
         }

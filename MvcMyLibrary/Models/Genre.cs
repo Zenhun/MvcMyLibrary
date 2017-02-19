@@ -10,7 +10,7 @@ namespace MvcMyLibrary.Models
     {
         [Required]
         public int GenreId { get; set; }
-        [Required]
+        [Required(ErrorMessage="Please enter genre.")]
         public string GenreName { get; set; }
         List<Book> Books { get; set; }
 

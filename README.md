@@ -8,6 +8,7 @@ You can:
   - edit book
   - search books (by Title or Author)
   - filter books by genre
+  - manage (create, rename, delete) genres
   
 If you want to know more about a specific book, click on it and a panel will display info from Google Books API.
 
