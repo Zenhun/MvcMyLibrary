@@ -70,7 +70,7 @@
 
 
             //Google Books API version
-            ////encodeURIComponents function encodes special characters, including: , / ? : @ & = + $ #
+            //encodeURIComponents function encodes special characters, including: , / ? : @ & = + $ #
             var bookSrc = "https://www.googleapis.com/books/v1/volumes?q='" + encodeURIComponent($title.text() + "' '" + $author.text()) + "'&maxResults=1";
             $.getJSON(bookSrc, function (data) {
                 console.log(data);
@@ -110,7 +110,6 @@
         $modal.find("input#AuthorSurname").val($book.find("#hidAuthorSurname").val());
         $modal.find("select#GenreId").val($book.find("#hidGenreId").val());
         $modal.find("#update-cover img").attr("src", $src);
-        //$modal.find("input#image-upload").val($book.find("img").attr("src"));
 
         $("#add-book-popup .top-bar span").text("Edit book");
         $("#update-cover").show();
@@ -166,24 +165,6 @@
         $("select.ddl-genre").focus();
     });
 //new genre
-
-////delete genre
-//    $("a.deleteGenre").click(function (e) {
-//        e.preventDefault();
-//        var id = $(this).attr("id");
-//        if (id !== "") {
-//            $.ajax({
-//                url: '/Genre/Delete',
-//                data: { 'id': id },
-//                type: 'GET',
-//                dataType: 'json'
-//            })
-//            .success(function (partialViewResult) {
-//                $("#genre-container").html(partialViewResult);
-//            });
-//        }
-//    });
-////delete genre
 
     //scroll to top
     $(".to-top").click(function () {
