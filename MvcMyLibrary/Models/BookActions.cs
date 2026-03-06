@@ -28,7 +28,7 @@ namespace MvcMyLibrary.Models
                           orderby b.Title
                           select new { b.BookId, b.Title, a.Name, a.Surname, g.GenreId, g.GenreName, b.ImageUrl }).ToList();
             }
-
+            //adding a third comment, maybe this will create a merge conflict
 
             //I made a class with all the elements of one book, gather from 3 tables: Books, Authors and Genres
             List<CompleteBook> books = new List<CompleteBook>();
