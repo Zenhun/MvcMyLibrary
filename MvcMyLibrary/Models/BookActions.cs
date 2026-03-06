@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-//adding test comment
 namespace MvcMyLibrary.Models
 {
     public class BookActions
