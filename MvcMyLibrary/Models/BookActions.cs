@@ -9,7 +9,7 @@ namespace MvcMyLibrary.Models
 {
     public class BookActions
     {
-        //add different test comment
+        //add different test comment - made changes from branch
         public static List<CompleteBook> GetCompleteBooks(int GenreId)
         {
             MyLibraryContext dbLibrary = new MyLibraryContext();
