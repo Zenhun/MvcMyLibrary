@@ -9,7 +9,7 @@ namespace MvcMyLibrary.Models
 {
     public class BookActions
     {
-        //add different test comment - made changes from branch
+        //add a new comment to test pull request from branch
         public static List<CompleteBook> GetCompleteBooks(int GenreId)
         {
             MyLibraryContext dbLibrary = new MyLibraryContext();
@@ -33,7 +33,7 @@ namespace MvcMyLibrary.Models
 
             //I made a class with all the elements of one book, gather from 3 tables: Books, Authors and Genres
             List<CompleteBook> books = new List<CompleteBook>();
-            //and another test comment
+
             foreach (var book in books2)
             {
                 var modelBook = new CompleteBook();
